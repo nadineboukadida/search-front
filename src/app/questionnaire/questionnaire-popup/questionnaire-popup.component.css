@@ -1,0 +1,47 @@
+
+.title {
+    font-size: large;
+}
+
+.subtitle {
+    font-family: "GTWalsheim-Light";
+}
+
+.close-button{
+  float: right;
+  top:-12px;
+  right:-12px;
+  background-color: #EFDCD9;
+  font-family: "GTWalsheim";
+}
+
+.close-button {
+    margin-bottom: -48px;
+}
+
+.secondary {
+    background-color: #EFDCD9;
+    cursor: pointer;
+}
+
+.primary {
+    background-color: #00A56A;
+    color: white;
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: #FAFAFA;
+    color: black;
+    cursor: not-allowed;
+}
+
+.myt-button {
+    /* color: white; */
+    font-family: "GTWalsheim";
+    border-radius: 0;
+    padding: 2px 12px 2px 12px;
+    border: none;
+    font-size: medium;
+    margin-top: 4px;
+}

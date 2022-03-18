@@ -1,0 +1,19 @@
+.preview {
+    color: gray;
+}
+
+li {
+    margin: 0;
+    list-style: none;
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+}
+.results {
+    margin-left: 0.2em;
+    padding: 16px;
+    background-color: lightsteelblue;
+    border-radius: 8px;
+}

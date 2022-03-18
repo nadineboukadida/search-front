@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let c of criteria">
+        <app-folder [label]="c.properties.label" [id]="c.id" [children]="c.children"></app-folder>
+    </li>
+</ul>
+<app-create-button [parent_id]="'C'"></app-create-button>

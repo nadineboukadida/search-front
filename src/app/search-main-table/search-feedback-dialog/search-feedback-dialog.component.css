@@ -1,0 +1,40 @@
+.index {
+    font-family: "GTWalsheim";
+    font-size: medium;
+}
+
+span {
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-top: 8px;
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+
+}
+
+mat-option {
+    font-size: medium;
+}
+
+.filter {
+    background-color: #EFDCD9;
+}
+
+.search {
+    background-color: #00A56A;
+    color: white;
+}
+
+.myt-button {
+    font-family: "GTWalsheim";
+    /* color: white; */
+    border-radius: 0;
+    border: none;
+    font-size: medium;
+    cursor: pointer;
+    margin-top: 4px;
+}

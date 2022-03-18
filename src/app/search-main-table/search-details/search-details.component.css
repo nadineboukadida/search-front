@@ -1,0 +1,73 @@
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+* {
+  font-family: "GTWalsheim-Light";
+  font-size: medium;
+}
+
+.header {
+  font-family: "GTWalsheim";
+  color: #00A56A;
+  font-size: large;
+  margin-bottom: 2px;
+}
+
+.title {
+  /* width: 100%; */
+  font-family: "GTWalsheim";
+  font-size: x-large;
+  padding: 24px;
+  margin-top: 8px;
+  margin-left: -14px;
+  margin-right: -14px;
+  background-color: #30343F;
+  color: white;
+}
+
+.report {
+    margin-left: -14px;
+    margin-right: -14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: darkred;
+    color: white;
+}
+
+
+.index {
+  font-family: "GTWalsheim"
+}
+
+.spacer {
+  height: 10px;
+  background-color: #FAFAFA;
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.incorrect {
+  text-decoration: underline;
+  color: darkred;
+}
+
+.content {
+    padding: 16px;
+}

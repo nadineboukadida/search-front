@@ -1,0 +1,23 @@
+<div mat-dialog-content>
+    <p>Report Incorrect Status</p>
+    <span class="index">Correct Status</span>
+    <mat-form-field>
+    <mat-label>Closed</mat-label>
+    <mat-select [disabled]="true">
+        <mat-option *ngFor="let status of ['Closed']" [value]="status" placeholder="Closed">
+            {{status}}
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+    <span class="index">Your e-mail</span><br>
+    <span>We use your e-mail address to validate you are a valid myTomorrows user.</span>
+    <mat-form-field>
+        <input matInput type="email" placeholder="E-mail" [(ngModel)]="data.email">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button class="myt-button search" mat-button (click)="reportFeedback(data.email, data.trialId)"
+        cdkFocusInitial>Submit Feedback</button>
+    <button class="myt-button filter" mat-button [mat-dialog-close]="data.trialId"
+        (click)="onNoClick()">Close</button>
+</div>

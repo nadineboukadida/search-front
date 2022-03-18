@@ -1,0 +1,24 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="false">X</button>
+<div mat-dialog-content>
+    <p>Download options</p>
+    <span>Your Treatment Search Report containing treatment options for {{ data.condition }} may take a few minutes to arrive after
+    sending.</span>
+    <mat-form-field>
+        <input matInput type="email" placeholder="Your e-mail address" [(ngModel)]="data.email">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" placeholder="Patient Identifier (optional)" [(ngModel)]="data.patientId">
+    </mat-form-field>
+    <mat-form-field *ngIf="initial_condition === 'savedStudies'">
+        <input matInput type="text" placeholder="Condition" [(ngModel)]="data.condition">
+    </mat-form-field>
+    <mat-form-field *ngIf="initial_condition === 'savedStudies'">
+        <input matInput type="text" placeholder="Location" [(ngModel)]="data.location">
+    </mat-form-field>
+    <mat-form-field *ngIf="initial_condition === 'savedStudies'">
+        <input matInput type="text" placeholder="Radius" [(ngModel)]="data.radius">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button class="myt-button search" mat-button (click)="generateTSR(data.email, data.questionnaire, data.patientId, data.condition, data.location, data.radius)" [mat-dialog-close]="true" cdkFocusInitial>Email report</button>
+</div>

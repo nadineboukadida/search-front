@@ -1,0 +1,38 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div class="search-container">
+        <div class="card">
+            <p class="title">Start your Treatment Search</p>
+            
+            <!-- All Autocompletes and Radius Search -->
+            <app-search-autocomplete 
+                (newConditionEvent)="setCondition($event)" 
+                (newCountryEvent)="setCountry($event)"
+                (newPositionEvent)="setPosition($event)"
+                (newDistanceEvent)="setDistance($event)"
+            ></app-search-autocomplete>
+            
+            <!-- Activate Search -->
+            <button mat-button class="search" type="button" (click)="goToSearch()" [disabled]="checkForCondition()">Start Search</button>
+            
+            <mat-divider></mat-divider>
+            
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <p class='filters'>Advanced Filters</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <!-- Filter Box -->
+                <app-search-filterbox 
+                (newFilterEvent)="setFilters($event)">
+                </app-search-filterbox>
+            </mat-expansion-panel>
+            
+            <p class="smallprint">Registry datasources: ClinicalTrials.gov, EU Clinical Trials register</p>
+        </div>
+    </div>
+    <div>
+        <mat-divider class="sections"></mat-divider>
+        <app-explainer></app-explainer>
+    </div>
+</div>

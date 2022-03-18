@@ -1,0 +1,14 @@
+<div class="card">
+    <app-local-save-checkbox [id]="id"></app-local-save-checkbox>
+    <p class="title" (click)="goToDetails(id)">{{title}}</p>
+    <p class="interventions" (click)="goToDetails(id)"> {{getInterventions()}} </p>
+    <div fxLayout="row wrap" fxLayoutAlign="space-around" (click)="goToDetails(id)">
+        <app-mini-card [title]="'Status'" [text]="status" [reported]='reports_as_closed' fxFlex></app-mini-card>
+        <mat-divider [vertical]="true"></mat-divider>
+        <app-mini-card [title]="'Phase'" [text]="getPhase()" fxFlex></app-mini-card>
+        <mat-divider [vertical]="true"></mat-divider>
+        <app-mini-card [title]="'Countries'" [text]="locations.length" fxFlex></app-mini-card>
+        <mat-divider [vertical]="true"></mat-divider>
+        <app-mini-card [title]="'Type'" [text]="type" fxFlex></app-mini-card>
+    </div>
+</div>

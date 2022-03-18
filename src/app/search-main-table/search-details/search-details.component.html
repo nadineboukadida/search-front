@@ -1,0 +1,51 @@
+<div class="content">
+    <a (click)="goBack()"><b><</b> Previous Page</a>
+    <div class="title">{{this.trialDetails.title}}</div>
+    <div class="report" *ngIf="checkIfIntAndOverZero(this.trialDetails.reports_as_closed)"><span >Note: {{this.trialDetails.protocol_type}} was reported as closed by {{this.trialDetails.reports_as_closed}} myTomorrows user(s)</span></div>
+    <div>
+        <p class="header">Overview</p>
+        <div class="column">
+            <p><span class="index">Trial ID </span>{{this.trialDetails.id}}</p>
+            <p><span class="index">Study Type   </span>{{this.trialDetails.protocol_type}}</p>
+            <p><span class="index">Phase   </span>{{this.trialDetails.phase}}</p>
+        </div>
+        <div class="column">
+            <p><span class="index">Overall Status   </span>{{this.trialDetails.overall_status}} <a (click)="openDialog()"><span class="incorrect">Incorrect?</span></a></p>
+            <p><span class="index">Start Date   </span>{{this.trialDetails.start_date}}</p>
+            <p><span class="index">End Date (est.)   </span>{{this.trialDetails.end_date}}</p>
+        </div>
+        <p><span class="index">Conditions</span></p>
+        <p>{{this.trialDetails.conditions}}</p>
+        <p><span class="index">Interventions</span></p>
+        <p>{{this.trialDetails.interventions}}</p>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <p class="header">Description</p>
+        <p>{{this.trialDetails.brief_summary}}</p>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <p class="header">Eligibility Criteria</p>
+        <p><span class="index">Inclusion Age:   </span>Patients aged between {{this.trialDetails.minimum_age}} and {{this.trialDetails.maximum_age}} years old</p>
+        <p><span class="index">Inclusion Sex:   </span>{{this.trialDetails.gender}} patients allowed</p>
+        <p><span class="index">Inclusion:</span></p>
+        <ul>
+            <li *ngFor="let c of getCriteria('inclusion', this.trialDetails.eligibility)">{{c}}</li>
+        </ul>
+        <p><span class="index">Exclusion:</span></p>
+        <ul>
+            <li *ngFor="let c of getCriteria('exclusion', this.trialDetails.eligibility)">{{c}}</li>
+        </ul>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <p class="header">Trial Sites</p>
+        <app-search-sites-table [sitesList]="this.trialDetails.locatedAt"></app-search-sites-table>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <p class="header">References</p>
+        <app-registry-table></app-registry-table>
+    </div>
+</div>

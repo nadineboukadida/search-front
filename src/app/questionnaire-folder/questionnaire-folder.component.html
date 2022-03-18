@@ -1,0 +1,31 @@
+<div class="container">
+    <div *ngIf="questionnaire.show.includes(id)" class="criterium">
+        <span class="show">{{ label }}</span>
+        <button *ngIf="type === 'BOOLEAN' && !checkIfAnswered() && !disabled && questionnaire.trial_ids.length" type="button" class="qbutton yes" (click)="processAnswer(id, type, true)">Y</button>
+        <button *ngIf="type === 'BOOLEAN' && !checkIfAnswered() && !disabled && questionnaire.trial_ids.length" type="button" class="qbutton no" (click)="processAnswer(id, type, false)">N</button>
+        
+        <input *ngIf="type === 'FLOAT' && !checkIfAnswered() && !disabled && questionnaire.trial_ids.length" type="text" [(ngModel)]="float" class="form-control" (ngModelChange)="floatValueChange($event)">
+        <button *ngIf="type === 'FLOAT' && !checkIfAnswered() && !disabled && questionnaire.trial_ids.length" (click)="processAnswer(id, type, float)" class="qbutton">Submit</button>
+        
+        <button *ngIf="!checkIfAnswered() && !disabled && questionnaire.trial_ids.length" class="qbutton skip" (click)="processAnswer(id, type, 'SKIP')">Skip</button>
+        <span *ngIf="checkIfAnswered()" class="preview"> {{ getAnswer() }}</span>
+        
+    </div>
+    <div *ngIf="questionnaire.preview.includes(id) && !questionnaire.show.includes(id)" class="criterium">
+        <span class="preview">{{ label }}</span>
+    </div>
+    
+    <div *ngIf="['C.05.00', 'C.00'].includes(id) && questionnaire.show.includes(id)">
+        <app-questionnaire-dropdown [children]="nonFloatChildren(this.children)"></app-questionnaire-dropdown>
+        <li *ngFor="let child of floatChildren(this.children)">
+            <app-questionnaire-folder [id]="child.id" [label]="child.properties.label" [children]="child.children"
+                [type]="child.properties.type">
+            </app-questionnaire-folder>
+        </li>
+    </div>
+    
+    <li *ngFor="let child of children">
+        <app-questionnaire-folder *ngIf="!['C.05.00', 'C.00'].includes(id)" [id]="child.id" [label]="child.properties.label" [children]="child.children" [type]="child.properties.type">
+        </app-questionnaire-folder>
+    </li>
+</div>

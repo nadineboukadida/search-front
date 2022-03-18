@@ -1,0 +1,28 @@
+<div>
+    <mat-table #table [dataSource]="dataSource">
+        <!-- Type Column -->
+        <ng-container matColumnDef="sitename">
+            <mat-header-cell *matHeaderCellDef> Site </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.sitename}} </mat-cell>
+        </ng-container>
+
+        <!-- city Column -->
+        <ng-container matColumnDef="city">
+            <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="countryname">
+            <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.countryname}} </mat-cell>
+        </ng-container>
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+        <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+</div>

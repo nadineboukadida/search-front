@@ -1,0 +1,17 @@
+.explainer {
+    background-color: white;
+    padding: 6px 36px 36px 36px;
+    max-width: 1200px;
+}
+
+h1 {
+    font-family: "GTWalsheim";
+    font-weight: normal;
+}
+
+h2 {
+    font-family: "GTWalsheim";
+    font-weight: normal;
+    font-size: large;
+    color: #00A56A
+}

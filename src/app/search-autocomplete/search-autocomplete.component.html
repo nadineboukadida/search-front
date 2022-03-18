@@ -1,0 +1,29 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input type="text" class="autocomplete" placeholder="Condition" aria-label="Number" matInput [formControl]="myControl"
+            [matAutocomplete]="auto" [(ngModel)]="condition">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.alias">
+                {{option.alias}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+<form class="other-form">
+<mat-form-field class="example-full-width">
+    <!-- Country Autocomplete -->
+    <div *ngIf="!currentPosition">
+    <input type="text" placeholder="Country (leave empty for worldwide)" aria-label="Country (leave empty for worldwide)" matInput [formControl]="countryControl"
+        [matAutocomplete]="auto2" [(ngModel)]="country">
+    <mat-autocomplete #auto2="matAutocomplete">
+        <mat-option *ngFor="let option of countryFilteredOptions | async" [value]="option">
+            {{option}}
+        </mat-option>
+    </mat-autocomplete>
+    </div>
+    <!-- Radius Search -->
+    <input *ngIf="currentPosition" type="text" placeholder="Distance from here (in km)" aria-label="Distance from here (in km)"
+        matInput [formControl]="countryControl" [(ngModel)]="distance" (change)="emitNewDistance(this.distance); emitNewPosition(this.currentPosition)">
+
+</mat-form-field>
+</form>

@@ -1,0 +1,21 @@
+<div fxLayout="column" fxFlexFill>
+  <mat-toolbar>
+  <mat-toolbar-row>
+    <img class="myt-green-logo" src="assets/myt-green-logo.original.png">
+    <!-- <p class="title">Treatment Search</p> -->
+    <div class="beta">Beta</div>
+  </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="container" fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+
+  <mat-toolbar class="footer">
+    <mat-toolbar-row class="footer">
+      <a href="https://www.mytomorrows.com">myTomorrows.com</a>
+      <a [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}">Saved Searches</a>
+      <a href="https://mytomorrows.com/en/get-in-contact">Contact Us</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

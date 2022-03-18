@@ -1,0 +1,209 @@
+* {
+    font-family: "GTWalsheim-Light";
+}
+
+p {
+    font-family: "GTWalsheim";
+    font-size: large;
+    flex-grow: 1;
+}
+
+.resultsNum {
+    color: #00A56A;
+    font-family: "GTWalsheim";
+    font-size: large;
+}
+
+.results {
+    display: flex;
+    /* justify-content: space-between; */
+    width: 100%;
+}
+
+.filter {
+    background-color: #EFDCD9;
+    cursor: pointer;
+}
+
+.search {
+    background-color: #00A56A;
+    color: white;
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: #FAFAFA;
+    color: black;
+    cursor: not-allowed;
+}
+
+.myt-button {
+    /* color: white; */
+    font-family: "GTWalsheim";
+    padding: 12px;
+    border-radius: 0;
+    border: none;
+    font-size: medium;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.green {
+    color:#00A56A;
+    font-family: "GTWalsheim";
+}
+
+
+.filter-bar {
+    width: 100%;
+}
+.back {
+    font-size: small;
+}
+
+.qtitle {
+    font-size: x-large;
+    margin-right: 32px;
+    margin-top: 16px;
+}
+
+.subtitle {
+    font-size: medium;
+    margin-top: -4px;
+}
+
+.explainer {
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+}
+
+mat-divider {
+    margin: 32px 0px 32px 0px;
+}
+
+.bottom-sheet {
+    margin: 16px 16px 16px 16px;
+}
+
+mat-button {
+    padding: 2px 2px 2px 2px;
+}
+
+
+/* Table */
+
+mat-header-cell {
+    background-color: #484349;
+    color: white;
+    font-family: "GTWalsheim";
+}
+
+mat-table {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+mat-header-row {
+    max-height: 10px;
+}
+
+.mat-row:nth-child(2n+1){
+  background-color: #FAFAFA;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}
+
+.report {
+    padding-top: 1px;
+    color: darkred;
+    text-decoration: underline;
+    display: block;
+}
+
+.mat-column-select {
+    flex: 0 0 5% !important;
+    width: 0 0 5% !important;
+}
+
+.mat-column-title {
+    flex: 0 0 50% !important;
+    width: 0 0 50% !important;
+}
+.mat-column-phase {
+    flex: 0 0 7% !important;
+    width: 0 0 7% !important;
+}
+.mat-column-protocol_type {
+    flex: 0 0 7% !important;
+    width: 0 0 7% !important;
+}
+.mat-column-overall_status {
+    flex: 0 0 12% !important;
+    width: 0 0 12% !important;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+mat-header-cell {
+    background-color: #484349;
+    color: white;
+    font-size: small;
+    font-family: "GTWalsheim";
+}
+
+mat-cell {
+    font-size: 14px;
+}
+
+.mat-row:nth-child(2n+1){
+  background-color: #FAFAFA;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff;
+}
+
+.report {
+    padding-top: 1px;
+    color: darkred;
+    text-decoration: underline;
+    display: block;
+}
+
+.saved {
+    background-color: #EEF8FF;
+    font-family: "GTWalsheim";
+    cursor: pointer;
+}
+
+/* Close Button */
+.close-button{
+  float: right;
+  top:-0px;
+  right:-0px;
+  background-color: #EFDCD9;
+  font-family: "GTWalsheim";
+}
+
+.close-button {
+    margin-bottom: -48px;
+}
+
+.content {
+    /* padding: 16px; */
+    margin: 16px;
+}
+
+.loader {
+    margin-top: 32px;
+    width: 100%;
+}
+
+.myt-button.mobile {
+    width: 100%;
+}

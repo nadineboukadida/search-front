@@ -1,0 +1,19 @@
+<div class="container">
+    <mat-form-field *ngIf="optionsInShown(this.children) && !disabled" class="dropdown">
+        <mat-select placeholder="Pick all that apply" (selectionChange)="onChange($event)">
+            <mat-option *ngFor="let child of toInclude(children)" [value]="child.id">
+                {{ child.properties.label }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!optionsInShown(this.children) || disabled" class="dropdown disabled" >
+        <mat-select placeholder="Pick all that apply" [disabled]="true" class="disabled">
+        </mat-select>
+    </mat-form-field>
+</div>
+<li *ngFor="let child of children">
+    <app-questionnaire-folder *ngIf="checkAnswered(child.id)" [id]="child.id" [label]="child.properties.label"
+        [children]="child.children" [type]="child.properties.type">
+    </app-questionnaire-folder>
+</li>

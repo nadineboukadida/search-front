@@ -1,0 +1,77 @@
+.container {
+    background-color: white;
+    /* padding: 16px; */
+    margin: 24px;
+    flex-grow: 1;
+}
+
+li {
+    padding: 0.2em 0.1em;
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    font-size: medium;
+}
+
+mat-toolbar {
+    background-color: #00A56A;
+    color: white;
+    font-family: "GTWalsheim";
+    /* padding-left: 4rem; */
+}
+
+.myt-green-logo {
+    width: 180px;
+    margin-left: 16px;
+}
+
+.beta {
+    border-radius: 8px;
+    border: white;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0px 4px 0px 4px;
+    font-family: "GTWalsheim-Light";
+    margin-left: 8px;
+    font-size: medium;
+}
+
+/* .content {
+    display: flex;
+    justify-content: space-around;
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    text-decoration: underline;
+    cursor: pointer;
+} */
+
+a {
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+}
+
+a:visited {
+    color: white;
+}
+
+.main {
+   position: relative; min-height: 100%;
+}
+
+.footer {
+    background-color: #2D3142;
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    padding-left: 82px;
+    margin-top: 52px;
+    font-size: 50px;
+}

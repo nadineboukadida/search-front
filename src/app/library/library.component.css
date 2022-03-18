@@ -1,0 +1,12 @@
+li {
+    padding: 0.2em 0.1em;
+    list-style: none;
+}
+
+ul {
+    list-style: none;
+}
+
+b.pointer {
+    cursor: pointer;
+}

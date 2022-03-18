@@ -1,0 +1,13 @@
+<b class="pointer" (click)=" this.expand()">{{ label }} [{{ id }}]</b>
+<a [routerLink]="['/criteria', id]">
+    <button>edit</button>
+</a>
+<div *ngIf="expanded">
+<ul>
+    <li *ngFor="let child of children">
+        <app-folder *ngIf="child.properties.criterium === false" [label]="child.properties.label" [id]="child.id" [children]="child.children"></app-folder>
+        <app-file *ngIf="child.properties.criterium === true" [label]="child.properties.label" [id]="child.id"></app-file>
+    </li>
+</ul>
+<app-create-button [parent_id]="id"></app-create-button>
+</div>

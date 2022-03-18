@@ -1,0 +1,52 @@
+* {
+    font-size: medium;
+}
+
+.preview {
+    font-family: "GTWalsheim-Light";
+    color: lightgray;
+}
+
+.criterium {
+    margin-top: 10px;
+    font-family: "GTWalsheim-Medium";
+}
+
+.container {
+    margin-left: 1em;
+    margin-top: 4px;
+}
+
+.qbutton {
+    color: white;
+    border: none;
+    /* font-size: small; */
+    cursor: pointer;
+}
+
+.yes {
+    background-color: green;
+    margin-left: 4px;
+}
+
+.no {
+    background-color: red;
+}
+
+.skip {
+    /* background-color: lightgray; */
+    color: gray;
+    text-decoration: underline;
+    background-color: white;
+    font-family: "GTWalsheim-Medium";
+}
+
+li {
+    margin: 0;
+    list-style: none;
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+}

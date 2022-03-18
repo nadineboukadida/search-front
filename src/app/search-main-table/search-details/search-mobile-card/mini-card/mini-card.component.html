@@ -1,0 +1,6 @@
+<div>
+    <p class="title">{{ title }}</p>
+    <p *ngIf="text !== 'Recruiting'" class="text">{{ text }}</p>
+    <p *ngIf="text === 'Recruiting'" class="text recruiting">{{ text }}</p>
+    <span class="reported" *ngIf="reported">Reported Closed</span>
+</div>

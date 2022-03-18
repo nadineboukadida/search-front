@@ -1,0 +1,26 @@
+* {
+    font-family: "GTWalsheim-Light";
+}
+
+mat-checkbox {
+    display: block;
+}
+
+input {
+    display: block;
+}
+
+.subheader {
+    font-family: "GTWalsheim";
+    margin-bottom: 0px;
+    font-size: medium;
+}
+
+mat-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+mat-radio-button {
+    margin-bottom: 4px;
+}

@@ -1,0 +1,24 @@
+* {
+    text-align: center;
+}
+
+.title {
+    font-family: "GTWalsheim";
+    font-size: small;
+}
+
+.text {
+    font-size: small;
+}
+
+.recruiting {
+    font-family: "GTWalsheim";
+    color: #00A56A;
+    margin-bottom: 0px;
+}
+
+.reported {
+    color: darkred;
+    font-size: small;
+    padding: 2px;
+}

@@ -1,0 +1,42 @@
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>{{ criterium.id }}</td>
+    </tr>
+    <tr>
+        <td>Parent ID</td>
+        <td>
+            <input type="text" [(ngModel)]="criterium.parent_id" />
+        </td>
+    </tr>
+    <tr>
+        <td>Answer Type</td>
+        <td>{{ criterium.properties.type }}</td>
+    </tr>
+    <tr>
+        <td>Label</td>
+        <td>
+            <input type="text" [(ngModel)]="criterium.properties.label" />
+        </td>
+    </tr>
+    <tr>
+        <td>Ask to</td>
+        <td>
+            <select name="ask_to" [(ngModel)]="criterium.properties.ask_to">
+                <option selected="selected" value="patient">patient</option>
+                <option value="physician">physician</option>
+                <option value="patient-nav">patient-nav</option>
+            </select>
+        </td>
+    </tr>
+</table>
+<br>
+<a [routerLink]="['/']">
+    <button>Go back</button>
+</a>
+<button class="update" (click)="update()">Update</button>
+<button class="delete" (click)="delete()">Delete</button>

@@ -1,0 +1,46 @@
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>ID</td>
+        <td>{{ null }}</td>
+    </tr>
+    <tr>
+        <td>Parent ID</td>
+        <td>
+            <input type="text" [(ngModel)]="criterium.parent_id" />
+        </td>
+    </tr>
+    <tr>
+        <td>Answer Type</td>
+        <td>
+            <select name="type" [(ngModel)]="criterium.properties.type">
+                <option selected="selected" value="BOOLEAN">BOOLEAN</option>
+                <option value="FLOAT">FLOAT</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Label</td>
+        <td>
+            <input type="text" [(ngModel)]="criterium.properties.label" />
+        </td>
+    </tr>
+    <tr>
+        <td>Ask to</td>
+        <td>
+            <select name="ask_to" [(ngModel)]="criterium.properties.ask_to">
+                <option selected="selected" value="patient">patient</option>
+                <option value="physician">physician</option>
+                <option value="patient-nav">patient-nav</option>
+            </select>
+        </td>
+    </tr>
+</table>
+<br>
+<a [routerLink]="['/']">
+    <button>Go back</button>
+</a>
+<button class="create" (click)="create()">Create</button>

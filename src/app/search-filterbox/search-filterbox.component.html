@@ -1,0 +1,29 @@
+<p class="subheader">Protocol Type</p>
+
+<mat-checkbox [(ngModel)]="form.ClinicalStudy" (change)="emitNewFilters()">Clinical Trials</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.ExpandedAccess" (change)="emitNewFilters()">Expanded Access Programs</mat-checkbox>
+
+<p class="subheader">Phase</p>
+<mat-checkbox [(ngModel)]="form.Phase1" (change)="emitNewFilters()">Phase 1</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.Phase2" (change)="emitNewFilters()">Phase 2</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.Phase3" (change)="emitNewFilters()">Phase 3</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.Phase4" (change)="emitNewFilters()">Phase 4</mat-checkbox>
+<!-- <mat-checkbox [(ngModel)]="form.ExpandedAccess">EAPs</mat-checkbox> -->
+<mat-checkbox [(ngModel)]="form.PhaseNotSpecified" (change)="emitNewFilters()">Unknown</mat-checkbox>
+
+<p class="subheader">Status</p>
+<mat-checkbox [(ngModel)]="form.NotYetRecruiting" (change)="emitNewFilters()">Not Yet Recruiting</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.Recruiting" (change)="emitNewFilters()">Recruiting</mat-checkbox>
+<mat-checkbox [(ngModel)]="form.UnknownStatus" (change)="emitNewFilters()">Unknown</mat-checkbox>
+
+<p class="subheader">Biological Sex</p>
+<mat-radio-group [(ngModel)]="form.Sex" (change)="emitNewFilters()">
+    <mat-radio-button value="All">All</mat-radio-button>
+    <mat-radio-button value="Male">Male</mat-radio-button>
+    <mat-radio-button value="Female">Female</mat-radio-button>
+</mat-radio-group>
+
+<p class="subheader">Age <span>(in years)</span></p>
+<mat-form-field>
+    <input matInput [(ngModel)]="form.Age" type="number" (change)="emitNewFilters()">  
+</mat-form-field>

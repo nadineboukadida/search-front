@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "GTWalsheim";
+    src: local("GTWalsheim"), url(./assets/fonts/GT-Walsheim-Bold.woff) format("truetype");
+}
+
+@font-face {
+    font-family: "GTWalsheim-Light";
+    src: local("GTWalsheim-Light"), url(./assets/fonts/GTWalsheim-Light.woff) format("truetype");
+}
+
+@font-face {
+    font-family: "GTWalsheim-Medium";
+    src: local("GTWalsheim-Medium"), url(./assets/fonts/GTWalsheim-Medium.woff) format("truetype");
+}
+html, body {height: 100%; box-sizing: border-box; margin:0; background-color: #FAFAFA}
+body { font-family: "GTWalsheim", sans-serif; color: #3A3B3C}

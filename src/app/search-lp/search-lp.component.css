@@ -1,0 +1,62 @@
+.card {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 24px;
+    background-color: white;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    width: fit-content;
+}
+
+.search-container {
+    width: 100%;
+    background-color: white;
+}
+
+.title {
+    font-family: "GTWalsheim";
+    font-size: x-large;
+}
+
+.filters {
+    color: gray;
+}
+
+.smallprint {
+    font-size: small;
+    color: gray;
+    font-family: "GTWalsheim-Light";
+}
+
+p {
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+}
+
+mat-expansion-panel {
+    width: 100%;
+    border-radius: 0;
+}   
+
+mat-divider {
+    margin: 16px 0px 16px 0px;
+}
+
+mat-divider.sections {
+    margin: 32px 32px 32px 32px;
+}
+
+.search {
+    font-family: "GTWalsheim";
+    background-color: #00A56A;
+    padding: 2px;
+    border-radius: 0;
+    border: none;
+    font-size: medium;
+    cursor: pointer;
+    margin-top: 4px;
+    color:white;
+    /* float:left; display:inline; */
+    width: 100%;
+}

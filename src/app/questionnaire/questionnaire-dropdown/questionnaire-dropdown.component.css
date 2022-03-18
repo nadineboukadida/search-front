@@ -1,0 +1,32 @@
+.dropdown {
+    width: 400px;
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+    padding: 0px;
+    margin-bottom: 0px;
+}
+
+::ng-deep mat-form-field.disabled span.mat-form-field-label-wrapper label {
+  color: lightgray !important;
+}
+
+mat-form-field {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.container {
+    margin-left: 1em;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+li {
+    margin: 0;
+    list-style: none;
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+}

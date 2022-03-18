@@ -1,0 +1,15 @@
+mat-option {
+    font-family: "GTWalsheim-Light";
+    font-size: medium;
+}
+
+mat-form-field {
+    font-family: "GTWalsheim-Light";
+    /* float:left;  */
+    /* display:inline;  */
+    margin-right: 1em;
+}
+
+.example-full-width {
+    width: 100%;
+}
