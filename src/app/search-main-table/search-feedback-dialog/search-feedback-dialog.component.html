@@ -2,12 +2,12 @@
     <p>Report Incorrect Status</p>
     <span class="index">Correct Status</span>
     <mat-form-field>
-    <mat-label>Closed</mat-label>
-    <mat-select [disabled]="true">
-        <mat-option *ngFor="let status of ['Closed']" [value]="status" placeholder="Closed">
-            {{status}}
-        </mat-option>
-    </mat-select>
+        <mat-label>Closed</mat-label>
+        <mat-select [disabled]="true">
+            <mat-option *ngFor="let status of ['Closed']" [value]="status" placeholder="Closed">
+                {{status}}
+            </mat-option>
+        </mat-select>
     </mat-form-field>
     <span class="index">Your e-mail</span><br>
     <span>We use your e-mail address to validate you are a valid myTomorrows user.</span>

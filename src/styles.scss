@@ -66,3 +66,21 @@ $my-app-accent:  mat-palette((
 $my-app-warn:    mat-palette($mat-deep-orange);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
+
+.snackbar {
+    margin-left: auto !important; // center align from left
+    margin-right: auto !important; // center align from right
+    margin-bottom: 1rem !important; 
+    padding: 10px !important; // spacing between the text and boundary
+    background-color: #3A3B3C !important;
+    color: white !important;
+    font-family: "GTWalsheim-Medium" !important;
+
+    .mat-button-wrapper {
+        color: #00A56A !important; // action text color
+        font-family: "GTWalsheim-Medium" !important;
+    }
+}
+.mat-simple-snackbar {
+    font-family: "GTWalsheim-Light" !important;
+}

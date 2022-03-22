@@ -9,5 +9,6 @@ export class PanelComponent {
 
   @Input() title: any;
   @Input() text: any;
+  @Input() beta = false;
 
 }

@@ -147,6 +147,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   openSnackBar() {
     this.snackBar.open("Your Treatment Search Report will be sent to you shortly.", "Close", {
       duration: 5000,
+      panelClass: 'snackbar'
     });
   }
 
@@ -307,3 +308,6 @@ export interface Element {
   reports_as_closed: any;
   location: any;
 }
+
+import {environment } from '../../environments/environment'
+console.log(environment.production)
