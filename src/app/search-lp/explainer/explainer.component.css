@@ -7,11 +7,17 @@
 h1 {
     font-family: "GTWalsheim";
     font-weight: normal;
+    margin-bottom: 32px;
 }
 
 h2 {
     font-family: "GTWalsheim";
     font-weight: normal;
     font-size: large;
-    color: #00A56A
+    color: #00A56A;
+}
+
+mat-divider {
+    margin-top: 12px;
+    margin-bottom: 24px;
 }

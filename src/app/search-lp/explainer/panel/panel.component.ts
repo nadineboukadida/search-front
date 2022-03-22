@@ -7,8 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class PanelComponent {
 
-  @Input() title: any;
-  @Input() text: any;
-  @Input() beta = false;
+  @Input() item: any;
 
+  getIcon() {
+    let ref = `../../../../assets/${this.item.image}`
+    console.log(ref)
+    return ref
+  }
 }

@@ -1,11 +1,14 @@
 <div class="panel">
-    <div>
-        <h3>
-        {{title}}
-    </h3>
-    <div *ngIf="beta" class="beta">Beta</div>
+    <div class="icon-container">
+        <img [src]="getIcon()" alt="icon" class="icon">
     </div>
-    <p>
-        {{text}}
+    <div>
+    <h3>
+        {{item.title}}
+    </h3>
+    <div *ngIf="item.beta" class="beta">Beta</div>
+    </div>
+    <p class="text">
+        {{item.text}}
     </p>
 </div>

@@ -225,7 +225,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
   
   openQuestionnairePopupFunction() {
-    console.log(this.questionnaireCondition, this.popupOpened)
     if (this.questionnaireCondition && !this.popupOpened) {
       this.openQuestionnairePopup()
       this.popupOpened = true;

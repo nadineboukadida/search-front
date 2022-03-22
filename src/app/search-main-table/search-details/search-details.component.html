@@ -41,11 +41,12 @@
     <div class="spacer"></div>
     <div>
         <p class="header">Trial Sites</p>
-        <app-search-sites-table [sitesList]="this.trialDetails.locatedAt"></app-search-sites-table>
+        <app-search-sites-table *ngIf="this.trialDetails.locatedAt.length > 0" [sitesList]="this.trialDetails.locatedAt"></app-search-sites-table>
+        <p *ngIf="this.trialDetails.locatedAt.length === 0">No sites found for this {{ this.trialDetails.protocol_type}}.</p>
     </div>
     <div class="spacer"></div>
     <div>
-        <p class="header">References</p>
-        <app-registry-table></app-registry-table>
+        <p class="header">Additional Information</p>
+        <app-registry-table [references]="this.trialDetails.references"></app-registry-table>
     </div>
 </div>

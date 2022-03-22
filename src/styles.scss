@@ -84,3 +84,35 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 .mat-simple-snackbar {
     font-family: "GTWalsheim-Light" !important;
 }
+
+// Table 
+mat-header-row {
+    max-height: 10px !important;
+}
+
+mat-header-cell {
+    background-color: #484349 !important;
+    color: white !important;
+    font-size: small !important;
+    font-family: "GTWalsheim" !important;
+}
+mat-table {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+}
+
+mat-cell {
+    font-size: 14px !important;
+    font-family: "GTWalsheim-Light";
+}
+
+.mat-row:nth-child(2n+1){
+  background-color: #FAFAFA !important;
+}
+.mat-row:not(:nth-child(2n+1)){
+  background-color:#ffffff !important;
+}
+
+.clickable {
+    cursor: pointer !important;
+}
