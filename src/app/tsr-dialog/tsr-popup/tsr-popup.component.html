@@ -20,5 +20,5 @@
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button class="myt-button search" mat-button (click)="generateTSR(data.email, data.questionnaire, data.patientId, data.condition, data.location, data.radius)" [mat-dialog-close]="true" cdkFocusInitial>Email report</button>
+    <button class="myt-button search" mat-button (click)="generateTSR(this.data.email, data.questionnaire, data.patientId, data.condition, data.location, data.radius, this.data.trial_ids)" [mat-dialog-close]="true" cdkFocusInitial>Email report</button>
 </div>

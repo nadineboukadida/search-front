@@ -42,9 +42,10 @@ export class QuestionnaireService {
     this.httpClient.post(this.url, questionnaire, { headers: this.headers }).subscribe((response: any) => { this.questionnaire.next(response); this.enable()});
   }
 
-  generateTsr(email: any, questionnaire: any, patientId: any, condition: any, location: any, radius: any) {
+  generateTsr(email: any, questionnaire: any, patientId: any, condition: any, location: any, radius: any, trial_ids: any) {
     let endpt = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/v01/search/request_tsr`;
-    let copy = questionnaire
+  
+    let copy = questionnaire ?? {};
     copy.email = email;
     copy.patient_id = patientId ?? "Unspecified";
     copy.disease = condition;
@@ -52,7 +53,7 @@ export class QuestionnaireService {
     copy.radius = radius;
     let body = {
       email: email,
-      trial_ids: copy.trial_ids,
+      trial_ids: copy.trial_ids ?? trial_ids,
       tsr_details: copy
     }
     this.httpClient.post(endpt, body, { headers: this.headers }).subscribe(() => console.log('done'));

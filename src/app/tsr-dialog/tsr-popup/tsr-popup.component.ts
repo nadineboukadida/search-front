@@ -4,6 +4,7 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 
 export interface DialogData {
   questionnaire: any;
+  trial_ids: any;
   email: any;
   patientId: any;
   condition: any;
@@ -26,6 +27,9 @@ export class TsrPopupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {
+
+    console.log(this.data.trial_ids)
+
     this.initial_condition = this.data.condition;
     if (this.initial_condition === 'savedStudies') {
       this.data.condition = '';
@@ -36,8 +40,8 @@ export class TsrPopupComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  generateTSR(email: any, questionnaire: any, patientId: any, condition: any, location: any, radius: any) {
-    this.questionnaireService.generateTsr(email, questionnaire, patientId, condition, location, radius);
+  generateTSR(email: any, questionnaire: any, patientId: any, condition: any, location: any, radius: any, trial_ids: any) {
+    this.questionnaireService.generateTsr(email, questionnaire, patientId, condition, location, radius, trial_ids);
   }
 
 }
