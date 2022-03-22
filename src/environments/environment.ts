@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  API_ENDPOINT: 'enterprise-search-develop'
 };
 
 /*
