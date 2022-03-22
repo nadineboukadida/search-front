@@ -308,3 +308,6 @@ export interface Element {
   reports_as_closed: any;
   location: any;
 }
+
+import {environment } from '../../environments/environment'
+console.log(environment.production)
