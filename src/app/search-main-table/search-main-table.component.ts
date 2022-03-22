@@ -147,6 +147,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   openSnackBar() {
     this.snackBar.open("Your Treatment Search Report will be sent to you shortly.", "Close", {
       duration: 5000,
+      panelClass: 'snackbar'
     });
   }
 

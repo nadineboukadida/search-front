@@ -1,19 +1,24 @@
 <div class="content">
+    
     <div>
-        <div class="results">
-            <a class='back' [routerLink]="['/']"><b><</b> Start new Search</a>
+        <button class='back' [routerLink]="['/']"><b><</b> Start new Search</button>
+
+        <div fxShow *ngIf="this.loading">
+            <p>Treatment Options: <span class="resultsNum">loading...</span></p>
+            <mat-progress-bar mode="indeterminate" class="loader"></mat-progress-bar>
         </div>
         
+        <div *ngIf="!this.loading">
         <div>
             <!-- Desktop -->
-            <div fxShow fxHide.lt-md class="results" *ngIf="!this.loading">
+            <div fxShow fxHide.lt-md class="results">
                 <p>Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
                 <a><button *ngIf="questionnaireCondition" class='myt-button filter' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
                 <a><button class='myt-button search' (click)="openDialog()">Download options</button></a>
                 <a *ngIf="getNumSaved() > 0" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved">Saved Options: {{getNumSaved()}}</button></a>
             </div>
             <!-- Mobile -->
-            <div fxHide fxShow.lt-md fxLayout="column wrap" *ngIf="!this.loading">
+            <div fxHide fxShow.lt-md fxLayout="column wrap">
                 <p>Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
                 <a><button *ngIf="questionnaireCondition" class='myt-button filter mobile' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
                 <a><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
@@ -21,9 +26,6 @@
             </div>
         </div>
         
-        <div class="loader" *ngIf="this.loading">
-            <mat-progress-bar mode="query"></mat-progress-bar>
-        </div>
 
         <!-- Desktop View -->
         <div fxShow fxHide.lt-md>
@@ -110,5 +112,6 @@
             [reports_as_closed]="option.reports_as_closed"
         >
         </app-search-mobile-card>
+    </div>
     </div>
 </div>

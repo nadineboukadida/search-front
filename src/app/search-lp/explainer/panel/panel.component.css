@@ -3,9 +3,23 @@ h3 {
     font-style: normal;
     font-size: medium;
     font-weight: normal;
+    display: inline;
 }
 
 p {
     font-family: "GTWalsheim-Light";
     line-height: 20px;
+}
+
+.beta {
+    border-radius: 6px;
+    border: #00A56A;
+    border-width: 2px;
+    border-style: solid;
+    font-family: "GTWalsheim-Medium";
+    margin-left: 2px;
+    display: inline;
+    color: #00A56A;
+    padding: 2px;
+    background-color: #FAFAFA;
 }

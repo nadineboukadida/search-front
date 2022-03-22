@@ -10,8 +10,11 @@ export class RegistryTableComponent {
   @Input() references: any;
 
   parsedReferences = () => {
-    console.log(this.references)
-    return JSON.parse(this.references)
+    if (this.references) {
+      return JSON.parse(this.references)
+    } else {
+      return false
+    }
   }
 
 }

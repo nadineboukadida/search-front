@@ -61,8 +61,7 @@ export class SearchDetailsComponent implements OnInit {
       data: { trialId: this.trialId }
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-    });
+    dialogRef.afterClosed().subscribe(() => {});
   }
 
 }
