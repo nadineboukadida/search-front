@@ -1,39 +1,27 @@
 <div class="content">
-    
     <div>
         <button class='back' [routerLink]="['/']"><b><</b> Start new Search</button>
-
-        <div fxShow *ngIf="this.loading">
+        
+        <div *ngIf="this.loading">
             <p>Treatment Options: <span class="resultsNum">loading...</span></p>
-            <mat-progress-bar mode="indeterminate" class="loader"></mat-progress-bar>
+            <mat-progress-bar mode="determinate" [value]="loadingVal"></mat-progress-bar>
         </div>
+    </div>
         
-        <div *ngIf="!this.loading">
-        <div>
-            <!-- Desktop -->
-            <div fxShow fxHide.lt-md class="results">
-                <p>Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
-                <a><button *ngIf="questionnaireCondition" class='myt-button filter' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
-                <a><button class='myt-button search' (click)="openDialog()">Download options</button></a>
-                <a *ngIf="getNumSaved() > 0" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved">Saved Options: {{getNumSaved()}}</button></a>
-            </div>
-            <!-- Mobile -->
-            <div fxHide fxShow.lt-md fxLayout="column wrap">
-                <p>Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
-                <a><button *ngIf="questionnaireCondition" class='myt-button filter mobile' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
-                <a><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
-                <a [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved mobile">Saved Options: {{getNumSaved()}}</button></a>
-            </div>
+    <!-- Desktop View -->
+    <div fxShow fxHide.lt-md>
+        <div class="results">
+            <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
+            <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
+            <a *ngIf="!this.loading"><button class='myt-button search' (click)="openDialog()">Download options</button></a>
+            <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved">Saved Options: {{getNumSaved()}}</button></a>
         </div>
-        
-
-        <!-- Desktop View -->
-        <div fxShow fxHide.lt-md>
-            <mat-form-field class="filter-bar">
-                <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
-            </mat-form-field>
-            <mat-table #table [dataSource]="dataSource">
-                <!-- Checkbox Column -->
+            
+        <mat-form-field class="filter-bar">
+            <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
+        </mat-form-field>
+        <mat-table #table [dataSource]="dataSource">
+            <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <mat-header-cell *matHeaderCellDef>
                     Saved
@@ -42,7 +30,7 @@
                     <app-local-save-checkbox [id]="row.id"></app-local-save-checkbox>
                 </mat-cell>
             </ng-container>
-
+            
             <!-- Type Column -->
             <ng-container matColumnDef="protocol_type">
                 <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
@@ -59,9 +47,9 @@
                 <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
                 <mat-cell *matCellDef="let element" class="clickable" (click)="goToDetails(element.id)"> 
                     <div class="status">
-                    <span class="green" *ngIf="greenList.includes(element.overall_status)">{{element.overall_status}}</span>
-                    <span *ngIf="!greenList.includes(element.overall_status)">{{element.overall_status}}</span>
-                    <span class="report" *ngIf="checkIfIntAndOverZero(element.reports_as_closed)"> Reported as Closed</span>
+                        <span class="green" *ngIf="greenList.includes(element.overall_status)">{{element.overall_status}}</span>
+                        <span *ngIf="!greenList.includes(element.overall_status)">{{element.overall_status}}</span>
+                        <span class="report" *ngIf="checkIfIntAndOverZero(element.reports_as_closed)"> Reported as Closed</span>
                     </div>
                 </mat-cell>
             </ng-container>
@@ -81,37 +69,44 @@
         </mat-table>
         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [showFirstLastButtons]="true">
         </mat-paginator>
-        </div>
-
-        <div>
-            <ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
-                <button mat-icon-button class="close-button" (click)="closeTemplateSheetMenu()">X</button>
-                <div class="bottom-sheet">
-                    <div class="results">
-                        <p class="qtitle">Complete patient profile</p>
-                    </div>
-                    <p class="subtitle">Treatment Options: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
-                    <p class="explainer">Complete your patient's medical profile to automatically match them to potentially eligible studies.</p>
-                    <mat-divider></mat-divider>    
-                    <app-questionnaire></app-questionnaire>
+    </div>
+        
+    <div>
+        <ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
+            <button mat-icon-button class="close-button" (click)="closeTemplateSheetMenu()">X</button>
+            <div class="bottom-sheet">
+                <div class="results">
+                    <p class="qtitle">Complete patient profile</p>
                 </div>
-            </ng-template>
+                <p class="subtitle">Treatment Options: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
+                <p class="explainer">Complete your patient's medical profile to automatically match them to potentially eligible studies.</p>
+                <mat-divider></mat-divider>    
+                <app-questionnaire></app-questionnaire>
+            </div>
+        </ng-template>
+    </div>
+    
+    <!-- Mobile View -->
+    <div fxHide fxShow.lt-md>
+        <div fxLayout="column wrap">
+            <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
+            <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter mobile' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
+            <a *ngIf="!this.loading"><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
+            <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved mobile">Saved Options: {{getNumSaved()}}</button></a>
+        </div>
+    
+        <div class="mobile">
+            <app-search-mobile-card *ngFor="let option of this.searchResults" 
+                [id]="option.id"
+                [interventions]="option.interventions" 
+                [title]="option.title" 
+                [phase]="option.phase" 
+                [locations]="option.location"
+                [type]="option.protocol_type"
+                [status]="option.overall_status"
+                [reports_as_closed]="option.reports_as_closed">
+            </app-search-mobile-card>
         </div>
     </div>
 
-    <!-- Mobile View -->
-    <div class="mobile" fxHide fxShow.lt-md>
-        <app-search-mobile-card *ngFor="let option of this.searchResults" 
-            [id]="option.id"
-            [interventions]="option.interventions" 
-            [title]="option.title" 
-            [phase]="option.phase" 
-            [locations]="option.location"
-            [type]="option.protocol_type"
-            [status]="option.overall_status"
-            [reports_as_closed]="option.reports_as_closed"
-        >
-        </app-search-mobile-card>
-    </div>
-    </div>
 </div>

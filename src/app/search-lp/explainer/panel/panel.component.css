@@ -23,3 +23,9 @@ p {
     padding: 2px;
     background-color: #FAFAFA;
 }
+
+.icon {
+    width: 200px;
+    clear: right;
+    margin-left: 0px;
+}
