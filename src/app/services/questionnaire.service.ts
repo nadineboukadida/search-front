@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { EndpointsService } from './endpoints.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionnaireService {
-  private url = 'https://enterprise-search-develop.mytomorrows.com/v01/search/questionnaire';
   private headers = {'Content-Type': 'application/json'}
 
   private questionnaire = new BehaviorSubject({});
@@ -15,7 +15,12 @@ export class QuestionnaireService {
   private disabled = new BehaviorSubject(false);
   disabled$ = this.disabled.asObservable();
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private endpointService: EndpointsService
+    ) { }
+
+  private url = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/v01/search/questionnaire`;
 
   getQuestionnaire(trial_ids: string[], user: string, answer: any) {
     let body = {
@@ -38,7 +43,7 @@ export class QuestionnaireService {
   }
 
   generateTsr(email: any, questionnaire: any, patientId: any, condition: any, location: any, radius: any) {
-    let endpt = 'https://enterprise-search-develop.mytomorrows.com/v01/search/request_tsr';
+    let endpt = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/v01/search/request_tsr`;
     let copy = questionnaire
     copy.email = email;
     copy.patient_id = patientId ?? "Unspecified";

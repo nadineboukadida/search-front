@@ -3,24 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { SearchFilterHelperService } from './search-filter-helper.service';
+import { EndpointsService } from './endpoints.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private url = 'https://enterprise-search-develop.mytomorrows.com/gql/graphql';
   private headers = { 'Content-Type': 'application/json' }
-
+  
   private searchResults = new BehaviorSubject({});
   searchResults$ = this.searchResults.asObservable();
-
+  
   private filteredResults = new BehaviorSubject({});
   filteredResults$ = this.filteredResults.asObservable();
-
+  
   private trialDetails = new BehaviorSubject({});
   trialDetails$ = this.trialDetails.asObservable();
-
-  constructor(private httpClient: HttpClient, private filterService: SearchFilterHelperService) { }
+  
+  constructor(
+    private httpClient: HttpClient, 
+    private filterService: SearchFilterHelperService,
+    private endpointService: EndpointsService
+    ) { }
+    
+  private url = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/gql/graphql`;
 
   getTrialsQuery = (trial_ids_str:string) => `query {
     studies(
@@ -207,7 +213,7 @@ export class SearchService {
   }
 
   reportFeedback(email: any, trial_id: any) {
-    let endpt = 'https://enterprise-search-develop.mytomorrows.com/v01/community/report';
+    let endpt = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/v01/community/report`;
     let body = {
       email: email,
       trial_id: trial_id,
