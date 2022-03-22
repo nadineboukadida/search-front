@@ -38,7 +38,6 @@ p {
 }
 
 .myt-button {
-    /* color: white; */
     font-family: "GTWalsheim";
     padding: 12px;
     border-radius: 0;
@@ -61,13 +60,14 @@ a {
     width: 100%;
 }
 .back {
-    font-size: 14px;
+    font-size: small;
     border-radius: 0px;
     border: 0px;
     background-color: transparent;
     cursor: pointer;
     text-decoration: underline;
     padding: 0px;
+    font-family: "GTWalsheim-Medium";
 }
 
 .qtitle {
@@ -98,31 +98,7 @@ mat-button {
     padding: 2px 2px 2px 2px;
 }
 
-
 /* Table */
-
-mat-header-cell {
-    background-color: #484349;
-    color: white;
-    font-family: "GTWalsheim";
-}
-
-mat-table {
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-mat-header-row {
-    max-height: 10px;
-}
-
-.mat-row:nth-child(2n+1){
-  background-color: #FAFAFA;
-}
-.mat-row:not(:nth-child(2n+1)){
-  background-color:#ffffff;
-}
-
 .report {
     padding-top: 1px;
     color: darkred;
@@ -135,10 +111,6 @@ mat-header-row {
     width: 0 0 5% !important;
 }
 
-.mat-column-title {
-    flex: 0 0 50% !important;
-    width: 0 0 50% !important;
-}
 .mat-column-phase {
     flex: 0 0 7% !important;
     width: 0 0 7% !important;
@@ -152,26 +124,9 @@ mat-header-row {
     width: 0 0 12% !important;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
-mat-header-cell {
-    background-color: #484349;
-    color: white;
-    font-size: small;
-    font-family: "GTWalsheim";
-}
-
-mat-cell {
-    font-size: 14px;
-}
-
-.mat-row:nth-child(2n+1){
-  background-color: #FAFAFA;
-}
-.mat-row:not(:nth-child(2n+1)){
-  background-color:#ffffff;
+.mat-column-interventions {
+    flex: 0 0 12% !important;
+    width: 0 0 12% !important;
 }
 
 .report {

@@ -23,3 +23,23 @@ p {
     padding: 2px;
     background-color: #FAFAFA;
 }
+
+.icon {
+    object-fit: contain;
+    height: 100%;
+}
+
+.icon-container {
+    height: 15vh;
+    width: 300px;
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.icon-container.mobile {
+    text-align: left;
+}
+
+.text {
+    margin-bottom: 24px;
+}

@@ -1,1 +1,16 @@
-<p *ngIf="this.parsedReferences()">{{this.parsedReferences()}}</p>
+<mat-table *ngIf="parsedReferences" #table [dataSource]="parsedReferences">
+    <!-- Title Column -->
+    <ng-container matColumnDef="identifier">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <span
+                class="title">{{element.identifier}}</span> </mat-cell>
+    </ng-container>
+    <!-- Title Column -->
+    <ng-container matColumnDef="source">
+        <mat-header-cell *matHeaderCellDef> Source </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <a [href]="element.url"> {{element.source}}</a> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+</mat-table>

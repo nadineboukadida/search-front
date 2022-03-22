@@ -2,10 +2,12 @@
     <h2>Why use myTomorrows’ Treatment Search?</h2>
     <h1>Our search is built specifically for patients and physicians looking for treatment options in development.</h1>
     <div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
-        <app-panel [title]="explainers[0].title" [text]="explainers[0].text" [beta]="explainers[0].beta"></app-panel>
+        <app-panel [item]="explainers[0]"></app-panel>
         <mat-divider [vertical]="true"></mat-divider>
-        <app-panel [title]="explainers[1].title" [text]="explainers[1].text" [beta]="explainers[1].beta"></app-panel>
+        <mat-divider [vertical]="false"></mat-divider>
+        <app-panel [item]="explainers[1]"></app-panel>
         <mat-divider [vertical]="true"></mat-divider>
-        <app-panel [title]="explainers[2].title" [text]="explainers[2].text" [beta]="explainers[2].beta"></app-panel>
+        <mat-divider [vertical]="false"></mat-divider>
+        <app-panel [item]="explainers[2]"></app-panel>
     </div>
 </div>

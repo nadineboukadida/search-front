@@ -15,6 +15,7 @@ import { TsrPopupComponent } from '../tsr-dialog/tsr-popup/tsr-popup.component';
 import { QuestionnairePopupComponent } from '../questionnaire/questionnaire-popup/questionnaire-popup.component';
 import { FILTERS_DEFAULT_VALUES } from '../types/search-filters.const';
 
+
 @Component({
   selector: 'app-search-main-table',
   templateUrl: './search-main-table.component.html',
@@ -28,6 +29,8 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+
+  loadingVal: number = 0;
 
   columnsToDisplay = ['select', 'protocol_type', 'phase', 'overall_status', 'title', 'interventions'] 
   greenList = ['Recruiting']
@@ -193,6 +196,10 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    for (let i = 0; i < 100; i++) {
+      window.setTimeout(() => (this.loadingVal += 1), i * 100);
+    }
+
     this.route.queryParams.subscribe((params: any) => {
       this.condition = params.condition, 
       this.country = params.country,
@@ -218,7 +225,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
   
   openQuestionnairePopupFunction() {
-    console.log(this.questionnaireCondition, this.popupOpened)
     if (this.questionnaireCondition && !this.popupOpened) {
       this.openQuestionnairePopup()
       this.popupOpened = true;

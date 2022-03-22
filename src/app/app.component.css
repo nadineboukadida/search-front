@@ -41,25 +41,6 @@ mat-toolbar {
     font-size: medium;
 }
 
-/* .content {
-    display: flex;
-    justify-content: space-around;
-    width: 65%;
-    margin-left: auto;
-    margin-right: auto;
-    text-decoration: underline;
-    cursor: pointer;
-} */
-
-a {
-    font-family: "GTWalsheim-Light";
-    font-size: medium;
-}
-
-a:visited {
-    color: white;
-}
-
 .main {
    position: relative; min-height: 100%;
 }
@@ -74,4 +55,11 @@ a:visited {
     padding-left: 82px;
     margin-top: 52px;
     font-size: 50px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: medium;
+    font-family: "GTWalsheim-Medium";
 }

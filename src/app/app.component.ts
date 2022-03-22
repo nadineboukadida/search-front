@@ -12,5 +12,21 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  items = [
+    {
+      link_text: 'myTomorrows.com',
+      link_url: 'https://www.mytomorrows.com',
+      relative_url: null
+    }, {
+      link_text: 'Privacy Statement',
+      link_url: 'https://mytomorrows.com/en/privacy-statement',
+      relative_url: null
+    }, {
+      link_text: 'Cookie Statement',
+      link_url: 'https://mytomorrows.com/en/cookie-statement',
+      relative_url: null
+    }
+  ]
+
   title = 'myTomorrows Criteria Library';
 }

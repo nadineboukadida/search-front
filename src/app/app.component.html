@@ -2,8 +2,6 @@
   <mat-toolbar>
   <mat-toolbar-row>
     <img class="myt-green-logo" src="assets/myt-green-logo.original.png">
-    <!-- <p class="title">Treatment Search</p> -->
-    <!-- <div class="beta">Beta</div> -->
   </mat-toolbar-row>
   </mat-toolbar>
 
@@ -11,11 +9,21 @@
     <router-outlet></router-outlet>
   </div>
 
+
   <mat-toolbar class="footer">
     <mat-toolbar-row class="footer">
-      <a href="https://www.mytomorrows.com">myTomorrows.com</a>
-      <a [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}">Saved Searches</a>
-      <a href="https://mytomorrows.com/en/get-in-contact">Contact Us</a>
+      <div class="mx-auto maxw-800px" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <ng-container *ngFor="let item of items; let i = index">
+          <div>
+            <a *ngIf="item.link_url" [href]="item.link_url" target="_blank">{{
+              item.link_text }}</a>
+              
+              <a *ngIf="item.relative_url" [routerLink]="item.relative_url">{{
+                item.link_text }}</a>
+              </div>
+              <div class="text-white" *ngIf="i < items.length -1">|</div>
+            </ng-container>
+          </div>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
