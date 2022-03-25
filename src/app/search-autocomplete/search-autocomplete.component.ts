@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, Observable, startWith, distinctUntilChanged, switchMap, map } from 'rxjs';
 import { SearchService } from '../services/search.service';
@@ -10,19 +10,20 @@ import { SearchService } from '../services/search.service';
   styleUrls: ['./search-autocomplete.component.css']
 })
 export class SearchAutocompleteComponent implements OnInit {
+
   myControl = new FormControl();
   filteredOptions: Observable<any[]>;
 
   countryControl = new FormControl();
   countryFilteredOptions: Observable<any[]>;
 
-  condition = null;
+  @Input() condition = null;
   @Output() newConditionEvent = new EventEmitter<string>();
   emitNewCondition(value: any) {
     this.newConditionEvent.emit(value);
   }
 
-  country = null;
+  @Input() country = null;
   @Output() newCountryEvent = new EventEmitter<string>();
   emitNewCountry(value: any) {
     this.newCountryEvent.emit(value);
@@ -34,7 +35,7 @@ export class SearchAutocompleteComponent implements OnInit {
     this.newPositionEvent.emit(value);
   }
 
-  distance = null;
+  @Input() distance = null;
   @Output() newDistanceEvent = new EventEmitter<number>();
   emitNewDistance(value: any) {
     this.newDistanceEvent.emit(value);
