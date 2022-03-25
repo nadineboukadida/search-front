@@ -71,7 +71,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   lng = null;
   distance = null;
   private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
-  questionnaireCondition = true;
+  questionnaireCondition = false;
   @Input() user = 'physician';
   @Input() answer = null;
 
@@ -99,33 +99,43 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
 
   openDialog(): void {
-    if (this.condition !== "savedStudies") {
+    if (this.questionnaireCondition ) {
       let questionnaire = this.questionnaireResults
       const dialogRef = this.dialog.open(TsrPopupComponent, {
         width: '300px',
         data: { questionnaire: questionnaire, condition: this.condition }
       });
-
       dialogRef.afterClosed().subscribe((result: any) => {
         if (result) {
           this.openSnackBar()
         }
       });
     } else {
-      let questionnaire = {
-        trial_ids: this.searchResults.map((item: any) => item.id)
-      }
+      let trial_ids = this.searchResults.map((study: any) => study.id)
       const dialogRef = this.dialog.open(TsrPopupComponent, {
         width: '300px',
-        data: { questionnaire: questionnaire, condition: this.condition }
+        data: { condition: this.condition, trial_ids: trial_ids }
       });
-
       dialogRef.afterClosed().subscribe((result: any) => {
         if (result) {
           this.openSnackBar()
         }
-      })
+      });
     }
+    
+    
+    // } else {
+    //   const dialogRef = this.dialog.open(TsrPopupComponent, {
+    //     width: '300px',
+    //     data: { condition: this.condition, trial_ids: this.searchResults.trial_ids }
+    //   });
+
+    //   dialogRef.afterClosed().subscribe((result: any) => {
+    //     if (result) {
+    //       this.openSnackBar()
+    //     }
+    //   })
+    // }
     
   }
 
@@ -196,6 +206,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading = true;
     for (let i = 0; i < 100; i++) {
       window.setTimeout(() => (this.loadingVal += 1), i * 100);
     }

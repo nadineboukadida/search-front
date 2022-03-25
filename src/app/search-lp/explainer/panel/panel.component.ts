@@ -11,7 +11,6 @@ export class PanelComponent {
 
   getIcon() {
     let ref = `../../../../assets/${this.item.image}`
-    console.log(ref)
     return ref
   }
 }

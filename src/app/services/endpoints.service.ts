@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment'
 export class EndpointsService {
 
   getEndpoint() {
+    console.log(environment.production)
     if (environment.production) {
       return 'enterprise-search' 
     } else {
