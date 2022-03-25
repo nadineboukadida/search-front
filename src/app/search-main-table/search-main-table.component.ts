@@ -70,6 +70,14 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   lat = null;
   lng = null;
   distance = null;
+  
+  substring = null;
+
+  filters: any;
+  defaultFilters = FILTERS_DEFAULT_VALUES;
+  
+  
+  
   private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
   questionnaireCondition = false;
   @Input() user = 'physician';
@@ -78,8 +86,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   private popupOpened = false;
   loading = true;
 
-  filters: any;
-  defaultFilters = FILTERS_DEFAULT_VALUES;
   
   constructor(
     private searchService: SearchService, 
@@ -122,20 +128,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
         }
       });
     }
-    
-    
-    // } else {
-    //   const dialogRef = this.dialog.open(TsrPopupComponent, {
-    //     width: '300px',
-    //     data: { condition: this.condition, trial_ids: this.searchResults.trial_ids }
-    //   });
-
-    //   dialogRef.afterClosed().subscribe((result: any) => {
-    //     if (result) {
-    //       this.openSnackBar()
-    //     }
-    //   })
-    // }
     
   }
 
@@ -230,6 +222,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
       this.filters['NotYetRecruiting'] = params.rn !== undefined ? (params.rn === "true") : this.defaultFilters.NotYetRecruiting;
       this.filters['Recruiting'] = params.recruiting !== undefined ? (params.recruiting === "true") : this.defaultFilters.Recruiting;
       this.filters['UnknownStatus'] = params.un !== undefined ? (params.un === "true") : this.defaultFilters.UnknownStatus;
+      this.substring = params.substring !== undefined ? params.substring : null;
     })
     this.handleCondition()
     this.getTrials()
@@ -258,7 +251,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
         this.searchService.getTrials(trialIds)
       }
     } else {
-      this.searchService.getFilteredTrials(this.condition, this.country, this.lat, this.lng, this.distance, this.filters)
+      this.searchService.getFilteredTrials(this.condition, this.country, this.lat, this.lng, this.distance, this.filters, this.substring)
     }
   }
 
