@@ -71,7 +71,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   lng = null;
   distance = null;
   private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
-  questionnaireCondition = true;
+  questionnaireCondition = false;
   @Input() user = 'physician';
   @Input() answer = null;
 
@@ -206,6 +206,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loading = true;
     for (let i = 0; i < 100; i++) {
       window.setTimeout(() => (this.loadingVal += 1), i * 100);
     }

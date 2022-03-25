@@ -20,7 +20,7 @@
         <mat-form-field class="filter-bar">
             <input matInput #filter (keyup)="applyFilter(filter.value)" placeholder="Filter">
         </mat-form-field>
-        <mat-table #table [dataSource]="dataSource">
+        <mat-table #table [dataSource]="dataSource" *ngIf="!this.loading">
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
                 <mat-header-cell *matHeaderCellDef>
