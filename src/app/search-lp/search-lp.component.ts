@@ -19,12 +19,12 @@ export class SearchLpComponent  {
 
   constructor(private router: Router) { }
 
-  clearValuesFor(mode = "condition") {
+  clearValuesFor(mode: any) {
     if (mode === "condition") {
       this.condition = null;
       this.country = null;
       this.distance = null;
-    } else if (mode === "substring") {
+    } else if (mode === "substring" && (this.condition || this.country || this.country)) {
       this.substring = null;
     }
   }
