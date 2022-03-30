@@ -80,7 +80,8 @@
                 </div>
                 <p class="subtitle">Treatment Options: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
                 <p class="explainer">Complete your patient's medical profile to automatically match them to potentially eligible studies.</p>
-                <mat-divider></mat-divider>    
+                <mat-divider></mat-divider>
+                <p *ngIf="questionnaire_loading">Loading...</p>
                 <app-questionnaire></app-questionnaire>
             </div>
         </ng-template>
