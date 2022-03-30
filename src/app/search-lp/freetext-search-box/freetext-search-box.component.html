@@ -1,0 +1,6 @@
+<span>Other terms</span>
+<form>  
+    <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="For example: NCT number, drug name" [(ngModel)]="substring" (ngModelChange)="emitNewSubstring(this.substring)" name="substring">
+    </mat-form-field>
+</form>

@@ -28,9 +28,9 @@ export class SearchService {
     
   private url = `https://${this.endpointService.getEndpoint()}.mytomorrows.com/gql/graphql`;
 
-  getTrialsQuery = (trial_ids_str:string) => `query {
+  getTrialsQuery = (trial_ids_str:string, sort_str: any) => `query {
     studies(
-      where:{id_IN:${trial_ids_str}}, options: {sort: {phase: DESC}}) {
+      where:{id_IN:${trial_ids_str}}, options: {sort: {${sort_str}}}) {
         id
         protocol_type
         phase
@@ -42,9 +42,9 @@ export class SearchService {
     }
   }`;
 
-  getTrials(trial_ids: any[]) {
+  getTrials(trial_ids: any[], sort_str = "phase: DESC") {
     let body = JSON.stringify({
-      query: this.getTrialsQuery(JSON.stringify(trial_ids))
+      query: this.getTrialsQuery(JSON.stringify(trial_ids), sort_str)
     })
     this.httpClient.post(this.url, body, { headers: this.headers }).subscribe((response: any) => {this.searchResults.next(response); });
   }
@@ -119,15 +119,7 @@ export class SearchService {
 
   getFilteredTrialsRadiusQuery = (condition: string, lat: string, lng: string, distance: string, filters: any) => `query {
     aliases(where:{alias:"${condition}"}) {
-      aliasStudiedIn(
-        where:{AND:[
-          {phase_IN: ${JSON.stringify(filters.phaseIn)}},
-          {OR: [{maximum_age_GT: ${parseInt(filters.ageGt)}}, {maximum_age: null}]},
-          {OR: [{minimum_age_LT: ${parseInt(filters.ageLt)}}, {minimum_age: null}]},
-          {protocol_type_IN: ${JSON.stringify(filters.protocolTypeIn)}},
-          {gender_IN: ${JSON.stringify(filters.genderIn)}},
-          {overall_status_IN: ${JSON.stringify(filters.overallStatusIn)}}
-      ]}) {
+      aliasStudiedIn   {
         id
         protocol_type
         locatedWithinMetersFrom(latitude: "${lat}", longitude: "${lng}", distance: "${distance}") {
@@ -143,44 +135,63 @@ export class SearchService {
     return filter
   }
 
-  getFilteredTrials(condition: string, country:any, lat:any, lng:any, distance: any, filters: any) {
+  getPureSubstringQuery = (substring: any, filters: any) => `query {
+    fullTextSearch(substring: "${substring}") {
+      id
+    }
+  }`
+
+  getFilteredTrials(condition: string, country:any, lat:any, lng:any, distance: any, filters: any, substring: any) {
     let mappedFilters = this.getFilters(filters)
 
-    if (country) {
+    if (substring && !condition) {
       const body = JSON.stringify({
-        query: this.getFilteredTrialsCountryQuery(condition, country, mappedFilters)
-      })
-      this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
-        (response: any) => { 
-          { this.searchResults.next(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id)),
-            this.getTrials(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id))
-          }; 
-      });
-
-    } else if (distance) {
-      const body = JSON.stringify({
-        query: this.getFilteredTrialsRadiusQuery(condition, String(lat), String(lng), String(distance), mappedFilters)
+        query: this.getPureSubstringQuery(substring, filters)
       })
       this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
         (response: any) => {
           {
-            this.searchResults.next(response.data.aliases[0].aliasStudiedIn.filter((study: any) => (study.locatedWithinMetersFrom.length !== 0 || study.protocol_type === "Expanded Access") ).map((item: any) => item.id)),
-              this.getTrials(response.data.aliases[0].aliasStudiedIn.filter((study: any) => (study.locatedWithinMetersFrom.length !== 0 || study.protocol_type === "Expanded Access")).map((item: any) => item.id))
+            this.searchResults.next(response.data.fullTextSearch.map((item: any) => item.id)),
+            this.getTrials(response.data.fullTextSearch.map((item: any) => item.id), "id: DESC")
           };
         });
-
     } else {
-      let query = this.getFilteredTrialsQuery(condition, mappedFilters)
-      const body = JSON.stringify({
-        query: query
-      })
-      this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
-        (response: any) => {
-          {
-            this.searchResults.next(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id)),
-            this.getTrials(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id))
-          };
+      if (country) {
+        const body = JSON.stringify({
+          query: this.getFilteredTrialsCountryQuery(condition, country, mappedFilters)
+        })
+        this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
+          (response: any) => { 
+            { this.searchResults.next(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id)),
+              this.getTrials(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id))
+            }; 
         });
+
+      } else if (distance) {
+        const body = JSON.stringify({
+          query: this.getFilteredTrialsRadiusQuery(condition, String(lat), String(lng), String(distance), mappedFilters)
+        })
+        this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
+          (response: any) => {
+            {
+              this.searchResults.next(response.data.aliases[0].aliasStudiedIn.filter((study: any) => (study.locatedWithinMetersFrom.length !== 0 || study.protocol_type === "Expanded Access") ).map((item: any) => item.id)),
+                this.getTrials(response.data.aliases[0].aliasStudiedIn.filter((study: any) => (study.locatedWithinMetersFrom.length !== 0 || study.protocol_type === "Expanded Access")).map((item: any) => item.id))
+            };
+          });
+
+      } else {
+        let query = this.getFilteredTrialsQuery(condition, mappedFilters)
+        const body = JSON.stringify({
+          query: query
+        })
+        this.httpClient.post(this.url, body, { headers: this.headers }).subscribe(
+          (response: any) => {
+            {
+              this.searchResults.next(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id)),
+              this.getTrials(response.data.aliases[0].aliasStudiedIn.map((item: any) => item.id))
+            };
+          });
+        }
     }
   }
 

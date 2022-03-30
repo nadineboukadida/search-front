@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,25 +6,36 @@ import { Router } from '@angular/router';
   templateUrl: './search-lp.component.html',
   styleUrls: ['./search-lp.component.css']
 })
-export class SearchLpComponent implements OnInit {
+export class SearchLpComponent  {
 
   condition: any;
   country: any;
   currentPosition: any;
   distance: any;
 
+  substring: any;
+
   filters: any
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  clearValuesFor(mode: any) {
+    if (mode === "condition") {
+      this.condition = null;
+      this.country = null;
+      this.distance = null;
+    } else if (mode === "substring" && (this.condition || this.country || this.country)) {
+      this.substring = null;
+    }
   }
 
   setCondition(value: any) {
+    this.clearValuesFor("substring")
     this.condition = value;
   }
 
   setCountry(value: any) {
+    this.clearValuesFor("substring")
     this.country = value;
   }
 
@@ -33,6 +44,7 @@ export class SearchLpComponent implements OnInit {
   }
 
   setDistance(value: any) {
+    this.clearValuesFor("substring")
     this.distance = value;
   }
 
@@ -54,12 +66,17 @@ export class SearchLpComponent implements OnInit {
     }
   }
 
-  checkForCondition() {
-    if (typeof this.condition === 'string') {
+  checkEnabled() {
+    if (typeof this.condition === 'string' || this.substring ) {
       return false
     } else {
       return true
     }
+  }
+
+  setSubstring(value: any) {
+    this.substring = value;
+    this.clearValuesFor("condition")
   }
 
   goToSearch() {
@@ -77,6 +94,10 @@ export class SearchLpComponent implements OnInit {
     params.queryParams['rn'] = this.filters.NotYetRecruiting;
     params.queryParams['recruiting'] = this.filters.Recruiting;
     params.queryParams['un'] = this.filters.UnknownStatus;
+
+    if (this.substring) {
+      params.queryParams['substring'] = this.substring;
+    }
 
     this.router.navigate(
       ['/search'],

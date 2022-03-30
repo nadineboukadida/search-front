@@ -52,6 +52,7 @@ import { LocalSaveCheckboxComponent } from './search-main-table/local-save-check
 import { ExplainerComponent } from './search-lp/explainer/explainer.component';
 import { PanelComponent } from './search-lp/explainer/panel/panel.component';
 import { RegistryTableComponent } from './search-main-table/search-details/registry-table/registry-table.component';
+import { FreetextSearchBoxComponent } from './search-lp/freetext-search-box/freetext-search-box.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { RegistryTableComponent } from './search-main-table/search-details/regis
     ExplainerComponent,
     PanelComponent,
     RegistryTableComponent,
+    FreetextSearchBoxComponent,
   ],
   imports: [
     BrowserModule,

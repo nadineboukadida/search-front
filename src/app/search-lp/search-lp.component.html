@@ -9,10 +9,21 @@
                 (newCountryEvent)="setCountry($event)"
                 (newPositionEvent)="setPosition($event)"
                 (newDistanceEvent)="setDistance($event)"
+                [condition]="condition"
+                [country]="country"
+                [distance]="distance"
             ></app-search-autocomplete>
             
+            
+            <mat-divider></mat-divider>
+            
+            <app-freetext-search-box
+                (newSubstringEvent)="setSubstring($event)"
+                [substring]="substring"
+            ></app-freetext-search-box>
+            
             <!-- Activate Search -->
-            <button mat-button class="search" type="button" (click)="goToSearch()" [disabled]="checkForCondition()">Start Search</button>
+            <button mat-button class="search" type="button" (click)="goToSearch()" [disabled]="checkEnabled()">Start Search</button>
             
             <mat-divider></mat-divider>
             
