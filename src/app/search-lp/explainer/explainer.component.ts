@@ -16,13 +16,13 @@ export class ExplainerComponent {
     },
     {
       title: 'Community Feedback',
-      text: 'Clinical trial registries often have outdated information. Our community of patients and physicians report to us the latest recruiting status of CTs and EAPs. We reflect reports of wrong statuses in our treatment search. We made giving feedback is easy, causing us to be the most up to date database for finding treatment options in development.',
+      text: 'Clinical trial registries often have outdated information. Our community of patients and physicians report to us the latest recruiting status of CTs and EAPs. We reflect reports of wrong statuses in our treatment search. We made giving feedback is easy, trying to be the most up to date database for finding treatment options in development.',
       beta: true,
       image: 'CommunityFeedback01.png'
     },
     {
       title: 'Automatic Eligibility Screening',
-      text: 'It’s cumbersome to check every possible trial for its eligibility criteria. A lot of trials share the same criteria, but you can’t screen for them simultaneously. Our medical reviewers have standardized eligibility criteria for select diseases, allowing us to screen through eligibility criteria automatically. Input a medical profile, and we automatically filter the available treatment options for its eligibility.',
+      text: 'It’s cumbersome to check every possible trial for its eligibility criteria. A lot of trials share the same criteria, but you can’t screen for them simultaneously. Our medical reviewers have standardized eligibility criteria for select diseases, allowing us to screen through eligibility criteria automatically. Complete a patient profile, and we automatically filter the available treatment options for its eligibility.',
       beta: true,
       image: 'AutomaticElegibility01.png'
     },
