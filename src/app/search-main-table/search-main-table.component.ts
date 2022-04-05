@@ -37,28 +37,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource()
   selection = new SelectionModel<Element>(true, []);
   
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach((row: any) => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Element): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id}`;
-  }
-
   searchSubscription: Subscription;
   searchResults: any;
   
@@ -80,12 +58,12 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   
   private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
   questionnaireCondition = false;
-  @Input() user = 'physician';
+  user: any;
   @Input() answer = null;
 
   private popupOpened = false;
   loading = true;
-
+  questionnaire_loading = true;
   
   constructor(
     private searchService: SearchService, 
@@ -97,11 +75,18 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
     private snackBar: MatSnackBar,
     private router: Router
     ) {
-    this.searchSubscription = this.searchService.searchResults$.subscribe((response: any) => { this.searchResults = response.data.studies; this.dataSource.data = this.searchResults; this.loading = false;});
-    this.questionnaireSubscription = this.questionnaireService.questionnaire$.subscribe((response: any) => this.searchResults = this.searchResults.filter((study: any) => response.trial_ids.includes(study.id), this.dataSource.data = this.searchResults, this.questionnaireResults = response))
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
+    this.searchSubscription = this.searchService.searchResults$.subscribe((response: any) => { 
+      this.searchResults = response.data.studies; 
+      this.dataSource.data = this.searchResults; 
+      this.loading = false;
+      this.handleCondition()
+    });
+    this.questionnaireSubscription = this.questionnaireService.questionnaire$.subscribe((response: any) => {
+      this.searchResults = this.searchResults.filter((study: any) => response.trial_ids.includes(study.id));
+      this.dataSource.data = this.searchResults; 
+      this.questionnaireResults = response;
+      this.questionnaire_loading = false;
+    });
   }
 
   openDialog(): void {
@@ -166,34 +151,11 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
 
   handleCondition() {
     let condition = this.condition;
-    if (condition === 'savedStudies') {
+    if (this.questionnaireConditions.includes(condition) !== true) {
       this.questionnaireCondition = false;
-      this.searchSubscription = this.searchService.searchResults$.subscribe((response: any) => {
-        this.searchResults = response.data.studies,
-        this.dataSource.data = this.searchResults;
-      });
-
-    } else if (this.questionnaireConditions.includes(condition)) {
-      this.questionnaireCondition = true;
-      this.questionnaireSubscription = this.questionnaireService.questionnaire$.subscribe((response: any) => {
-        this.searchResults = this.searchResults.filter((study: any) => response.trial_ids.includes(study.id)),
-        this.dataSource.data = this.searchResults,
-        this.questionnaireResults = response,
-        this.openQuestionnairePopupFunction();
-      })
-      this.searchSubscription = this.searchService.searchResults$.subscribe((response: any) => {
-        this.searchResults = response.data.studies,
-          this.questionnaireService.getQuestionnaire(response.data.studies.map((item: any) => item.id), this.user, this.answer),
-          this.dataSource.data = this.searchResults;
-      });
-      this.libraryService.getLibrary();
-
     } else {
-      this.questionnaireCondition = false;
-      this.searchSubscription = this.searchService.searchResults$.subscribe((response: any) => {
-        this.searchResults = response.data.studies,
-          this.dataSource.data = this.searchResults;
-      });
+      this.questionnaireCondition = true;
+      this.openQuestionnairePopupFunction();
     }
   }
 
@@ -224,8 +186,8 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
       this.filters['UnknownStatus'] = params.un !== undefined ? (params.un === "true") : this.defaultFilters.UnknownStatus;
       this.substring = params.substring !== undefined ? params.substring : null;
     })
-    this.handleCondition()
     this.getTrials()
+    this.libraryService.getLibrary();
   }
   
   openQuestionnairePopupFunction() {
@@ -305,6 +267,11 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
     } else {
       return JSON.parse(currentSaved).length
     }
+  }
+
+  setUser(value: any) {
+    this.user = value;
+    this.questionnaireService.getQuestionnaire(this.searchResults.map((item: any) => item.id), this.user, this.answer);
   }
 }
 
