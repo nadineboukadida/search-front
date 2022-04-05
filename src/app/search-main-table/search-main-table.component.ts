@@ -58,7 +58,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   
   private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
   questionnaireCondition = false;
-  user = 'physician';
+  user: any;
   @Input() answer = null;
 
   private popupOpened = false;
@@ -129,7 +129,6 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
-        this.questionnaireService.getQuestionnaire(this.searchResults.map((item: any) => item.id), this.user, this.answer);
         this.openTemplateSheetMenu();
       }
     })
@@ -268,6 +267,11 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
     } else {
       return JSON.parse(currentSaved).length
     }
+  }
+
+  setUser(value: any) {
+    this.user = value;
+    this.questionnaireService.getQuestionnaire(this.searchResults.map((item: any) => item.id), this.user, this.answer);
   }
 }
 
