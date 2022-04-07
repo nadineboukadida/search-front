@@ -74,7 +74,10 @@
     <!-- Questionnaire -->
     <div>
         <ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
-            <button mat-icon-button class="close-button" (click)="closeTemplateSheetMenu()">X</button>
+            <div class="questionnaire_header">
+                <img class="myt-green-logo" src="assets/myt-green-logo.original.png">
+            </div>
+            <button mat-button class="close-button" (click)="closeTemplateSheetMenu()">Close</button>
             <div class="bottom-sheet">
                 <app-pick-user-type *ngIf="!user" (newUserEvent)="setUser($event)"></app-pick-user-type>
 
