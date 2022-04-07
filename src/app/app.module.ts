@@ -54,6 +54,7 @@ import { PanelComponent } from './search-lp/explainer/panel/panel.component';
 import { RegistryTableComponent } from './search-main-table/search-details/registry-table/registry-table.component';
 import { FreetextSearchBoxComponent } from './search-lp/freetext-search-box/freetext-search-box.component';
 import { PickUserTypeComponent } from './questionnaire/pick-user-type/pick-user-type.component';
+import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { PickUserTypeComponent } from './questionnaire/pick-user-type/pick-user-
     RegistryTableComponent,
     FreetextSearchBoxComponent,
     PickUserTypeComponent,
+    PoemRulesComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +99,7 @@ import { PickUserTypeComponent } from './questionnaire/pick-user-type/pick-user-
       { path: 'create/:parentId', component: CriteriumCreateComponent },
       { path: 'search', component: SearchMainTableComponent },
       { path: 'search/:trialId', component: SearchDetailsComponent },
+      { path: 'rules', component: PoemRulesComponent }
     ]),
     NoopAnimationsModule,
     MatTableModule,

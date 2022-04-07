@@ -1,0 +1,17 @@
+<div>
+    <h2>Rules for exclusion from Treatment Search</h2>
+    <p>Rules for exclusion</p>
+    <ol>
+        <li *ngFor="let rule of non_poem"> {{rule}}</li>
+    </ol>
+
+    <p>Excluded conditions</p>
+    <ul>
+        <li *ngFor="let rule of non_poem_conditions"> {{rule}}</li>
+    </ul>
+
+    <p>Conditions being re-evaluated</p>
+    <ul>
+        <li *ngFor="let rule of re_evaluation"> {{rule}}</li>
+    </ul>
+</div>
