@@ -21,7 +21,6 @@ p {
     display: inline;
     color: #00A56A;
     padding: 2px;
-    background-color: #FAFAFA;
 }
 
 .icon {
@@ -40,6 +39,13 @@ p {
     text-align: left;
 }
 
-.text {
+.panel {
     margin-bottom: 24px;
+}
+
+.subtle_link {
+    font-family: "GTWalsheim-Medium";
+    font-size: medium;
+    color: #474a58;
+    text-decoration: underline;
 }

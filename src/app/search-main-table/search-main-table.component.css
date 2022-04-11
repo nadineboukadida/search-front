@@ -145,8 +145,11 @@ mat-button {
 /* Close Button */
 .close-button{
   float: right;
-  top:-0px;
-  right:-0px;
+  border: none;
+  border-radius: 0px;
+  color: #2D3142;
+  top:24px;
+  right:16px;
   background-color: #EFDCD9;
   font-family: "GTWalsheim";
 }
@@ -167,4 +170,22 @@ mat-button {
 
 .myt-button.mobile {
     width: 100%;
+}
+
+/* Questionnaire Header */
+.questionnaire_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00A56A;
+    margin-right: -16px;
+    margin-left: -16px;
+    margin-top: -8px;
+    padding: 16px;
+}
+
+.myt-green-logo {
+    margin-left: 16px;
+    width: 150px;
 }

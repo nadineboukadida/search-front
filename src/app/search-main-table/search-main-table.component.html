@@ -70,18 +70,28 @@
         <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[10, 25, 50]" [showFirstLastButtons]="true">
         </mat-paginator>
     </div>
-        
+    
+    <!-- Questionnaire -->
     <div>
         <ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
-            <button mat-icon-button class="close-button" (click)="closeTemplateSheetMenu()">X</button>
+            <div class="questionnaire_header">
+                <img class="myt-green-logo" src="assets/myt-green-logo.original.png">
+            </div>
+            <button mat-button class="close-button" (click)="closeTemplateSheetMenu()">Close</button>
             <div class="bottom-sheet">
+                <app-pick-user-type *ngIf="!user" (newUserEvent)="setUser($event)"></app-pick-user-type>
+
+                <!-- Questionnaire Elements -->
+                <div *ngIf="user">
                 <div class="results">
                     <p class="qtitle">Complete patient profile</p>
                 </div>
                 <p class="subtitle">Treatment Options: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
-                <p class="explainer">Complete your patient's medical profile to automatically match them to potentially eligible studies.</p>
-                <mat-divider></mat-divider>    
+                <p class="explainer">Complete the patient's medical profile to automatically match them to potentially eligible studies.</p>
+                <mat-divider></mat-divider>
+                <p *ngIf="questionnaire_loading">Loading...</p>
                 <app-questionnaire></app-questionnaire>
+                </div>
             </div>
         </ng-template>
     </div>

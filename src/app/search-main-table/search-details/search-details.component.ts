@@ -64,4 +64,13 @@ export class SearchDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {});
   }
 
+  getInterventions() {
+    return this.trialDetails.interventions.join(', ')
+  }
+
+  getConditions() {
+    let parsed = JSON.parse(this.trialDetails.conditions)
+    return parsed.join(', ')
+  }
+
 }
