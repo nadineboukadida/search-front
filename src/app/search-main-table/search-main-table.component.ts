@@ -56,7 +56,7 @@ export class SearchMainTableComponent implements OnInit, OnDestroy {
   
   
   
-  private questionnaireConditions = ['Muscular Dystrophy, Duchenne', "Glioblastoma"]
+  private questionnaireConditions = ['Muscular Dystrophy, Duchenne']
   questionnaireCondition = false;
   user: any;
   @Input() answer = null;
