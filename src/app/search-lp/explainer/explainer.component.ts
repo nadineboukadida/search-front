@@ -31,9 +31,10 @@ export class ExplainerComponent {
       text: 'It’s cumbersome to check every possible trial for its eligibility criteria. A lot of trials share the same criteria, but you can’t screen for them simultaneously. Our medical reviewers have standardized eligibility criteria for select diseases, allowing us to screen through eligibility criteria automatically. Input a medical profile, and we automatically filter the available treatment options to check for eligibility. ',
       beta: true,
       image: 'AutomaticElegibility01.png',
-      relative_url: "/search",
+      // relative_url: "/search",
       // link_text: "Explore an example",
       // params: {condition: "Muscular Dystrophy, Duchenne"}
+      relative_url: null,
       link_text: null,
       params: null
     },
