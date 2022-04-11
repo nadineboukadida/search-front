@@ -11,4 +11,5 @@
     <p class="text">
         {{item.text}}
     </p>
+    <a *ngIf="item.relative_url" class="subtle_link" [routerLink]="item.relative_url" [queryParams]="item.params">{{item.link_text}} ></a>
 </div>

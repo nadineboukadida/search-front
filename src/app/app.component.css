@@ -28,6 +28,7 @@ mat-toolbar {
 .myt-green-logo {
     width: 180px;
     margin-left: 16px;
+    cursor: pointer;
 }
 
 .beta {

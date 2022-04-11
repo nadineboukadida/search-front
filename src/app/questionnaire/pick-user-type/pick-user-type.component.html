@@ -1,0 +1,13 @@
+<div class="content">
+<h3 class="title">Are you a patient or a healthcare professional?</h3>
+<div fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+<div class="answer" (click)="emitUser('patient')">
+    <p class="value">Patient ></p>
+    <span class="subtitle">I am a patient, or a caregiver completing this medical profile on behalf of a patient.</span>
+</div>
+<div class="answer" (click)="emitUser('physician')">
+    <p class="value">Healthcare Professional ></p>
+    <span class="subtitle">I am a healthcare professional.</span>
+</div>
+</div>
+</div>
