@@ -32,8 +32,10 @@ export class ExplainerComponent {
       beta: true,
       image: 'AutomaticElegibility01.png',
       relative_url: "/search",
-      link_text: "Explore an example",
-      params: {condition: "Muscular Dystrophy, Duchenne"}
+      // link_text: "Explore an example",
+      // params: {condition: "Muscular Dystrophy, Duchenne"}
+      link_text: null,
+      params: null
     },
   ]
 
