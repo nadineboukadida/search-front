@@ -13,7 +13,7 @@
         <div class="results">
             <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
             <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
-            <a *ngIf="!this.loading"><button class='myt-button search' (click)="openDialog()">Download options</button></a>
+            <a *ngIf="!this.loading && this.questionnaireCondition"><button class='myt-button search' (click)="openDialog()">Download options</button></a>
             <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved">Saved Options: {{getNumSaved()}}</button></a>
         </div>
             
@@ -101,7 +101,7 @@
         <div fxLayout="column wrap">
             <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
             <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter mobile' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
-            <a *ngIf="!this.loading"><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
+            <a *ngIf="!this.loading && this.questionnaireCondition"><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
             <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved mobile">Saved Options: {{getNumSaved()}}</button></a>
         </div>
     
