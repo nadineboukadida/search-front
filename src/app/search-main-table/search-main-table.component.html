@@ -3,7 +3,7 @@
         <button class='back' [routerLink]="['/']"><strong><</strong> Start new Search</button>
         
         <div *ngIf="this.loading">
-            <p>Treatment Options: <span class="resultsNum">loading...</span></p>
+            <p>Clinical Trials and Expanded Access Programs: <span class="resultsNum">loading...</span></p>
             <mat-progress-bar mode="determinate" [value]="loadingVal"></mat-progress-bar>
         </div>
     </div>
@@ -11,7 +11,7 @@
     <!-- Desktop View -->
     <div fxShow fxHide.lt-md>
         <div class="results">
-            <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
+            <p *ngIf="!this.loading">Clinical Trials and Expanded Access Programs: <span class="resultsNum">{{ searchResults.length}}</span></p>
             <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
             <a *ngIf="!this.loading && this.questionnaireCondition"><button class='myt-button search' (click)="openDialog()">Download options</button></a>
             <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved">Saved Options: {{getNumSaved()}}</button></a>
@@ -86,7 +86,7 @@
                 <div class="results">
                     <p class="qtitle">Complete patient profile</p>
                 </div>
-                <p class="subtitle">Treatment Options: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
+                <p class="subtitle">Clinical Trials and Expanded Access Programs: <span class="resultsNum Small">{{ searchResults.length}}</span></p>
                 <p class="explainer">Complete the patient's medical profile to automatically match them to potentially eligible studies.</p>
                 <mat-divider></mat-divider>
                 <p *ngIf="questionnaire_loading">Loading...</p>
@@ -99,7 +99,7 @@
     <!-- Mobile View -->
     <div fxHide fxShow.lt-md>
         <div fxLayout="column wrap">
-            <p *ngIf="!this.loading">Treatment Options: <span class="resultsNum">{{ searchResults.length}}</span></p>
+            <p *ngIf="!this.loading">Clinical Trials and Expanded Access Programs: <span class="resultsNum">{{ searchResults.length}}</span></p>
             <a *ngIf="!this.loading"><button *ngIf="questionnaireCondition" class='myt-button filter mobile' (click)="openTemplateSheetMenu()">Complete patient profile</button></a>
             <a *ngIf="!this.loading && this.questionnaireCondition"><button class='myt-button search mobile' (click)="openDialog()">Download options</button></a>
             <a *ngIf="!this.loading" [routerLink]="['/search']" [queryParams]="{condition: 'savedStudies'}"><button class="myt-button saved mobile">Saved Options: {{getNumSaved()}}</button></a>
