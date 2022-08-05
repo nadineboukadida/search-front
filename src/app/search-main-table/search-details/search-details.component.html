@@ -1,52 +1,91 @@
 <div class="content">
-    <a (click)="goBack()"><b><</b> Previous Page</a>
-    <div class="title">{{this.trialDetails.title}}</div>
-    <div class="report" *ngIf="checkIfIntAndOverZero(this.trialDetails.reports_as_closed)"><span >Note: {{this.trialDetails.protocol_type}} was reported as closed by {{this.trialDetails.reports_as_closed}} myTomorrows user(s)</span></div>
-    <div>
-        <p class="header">Overview</p>
-        <div class="column">
-            <p><span class="index">Trial ID </span>{{this.trialDetails.id}}</p>
-            <p><span class="index">Study Type   </span>{{this.trialDetails.protocol_type}}</p>
-            <p><span class="index">Phase   </span>{{this.trialDetails.phase}}</p>
-        </div>
-        <div class="column">
-            <p><span class="index">Overall Status   </span>{{this.trialDetails.overall_status}} <a (click)="openDialog()"><span class="incorrect">Incorrect?</span></a></p>
-            <p><span class="index">Start Date   </span>{{this.trialDetails.start_date}}</p>
-            <p><span class="index">End Date (est.)   </span>{{this.trialDetails.end_date}}</p>
-        </div>
-        <p><span class="index">Conditions</span></p>
-        <p>{{this.getConditions()}}</p>
-        <p><span class="index">Interventions</span></p>
-        <p>{{this.getInterventions()}}</p>
+    <a (click)="goBack()"><b>
+            <</b> Previous Page</a> <div class="title">{{this.trialDetails.title}}</div>
+<div class="report" *ngIf="checkIfIntAndOverZero(this.trialDetails.reports_as_closed)"><span>Note:
+        {{this.trialDetails.protocol_type}} was reported as closed by {{this.trialDetails.reports_as_closed}}
+        myTomorrows user(s)</span></div>
+<div>
+    <p class="header">Overview</p>
+    <div class="column">
+        <p><span class="index">Trial ID </span>{{this.trialDetails.id}}</p>
+        <p><span class="index">Study Type </span>{{this.trialDetails.protocol_type}}</p>
+        <p><span class="index">Phase </span>{{this.trialDetails.phase}}</p>
     </div>
-    <div class="spacer"></div>
-    <div>
-        <p class="header">Description</p>
-        <p>{{this.trialDetails.brief_summary}}</p>
+    <div class="column">
+        <p><span class="index">Overall Status </span>{{this.trialDetails.overall_status}} <a
+                (click)="openDialog()"><span class="incorrect">Incorrect?</span></a></p>
+        <p><span class="index">Start Date </span>{{this.trialDetails.start_date}}</p>
+        <p><span class="index">End Date (est.) </span>{{this.trialDetails.end_date}}</p>
     </div>
-    <div class="spacer"></div>
-    <div>
-        <p class="header">Eligibility Criteria</p>
-        <p><span class="index">Inclusion Age:   </span>Patients aged between {{this.trialDetails.minimum_age}} and {{this.trialDetails.maximum_age}} years old</p>
-        <p><span class="index">Inclusion Sex:   </span>{{this.trialDetails.gender}} patients allowed</p>
-        <p><span class="index">Inclusion:</span></p>
-        <ul>
-            <li *ngFor="let c of getCriteria('inclusion', this.trialDetails.eligibility)">{{c}}</li>
-        </ul>
-        <p><span class="index">Exclusion:</span></p>
-        <ul>
-            <li *ngFor="let c of getCriteria('exclusion', this.trialDetails.eligibility)">{{c}}</li>
-        </ul>
+    <p><span class="index">Conditions</span></p>
+    <p>{{this.getConditions()}}</p>
+    <p><span class="index">Interventions</span></p>
+    <p>{{this.getInterventions()}}</p>
+</div>
+<div class="spacer"></div>
+<div>
+    <p class="header">Description</p>
+    <p>{{this.trialDetails.brief_summary}}</p>
+</div>
+<div class="spacer"></div>
+<div>
+    <p class="header">Eligibility Criteria</p>
+    <p><span class="index">Inclusion Age: </span>Patients aged between {{this.trialDetails.minimum_age}} and
+        {{this.trialDetails.maximum_age}} years old</p>
+    <p><span class="index">Inclusion Sex: </span>{{this.trialDetails.gender}} patients allowed</p>
+    <p><span class="index">Inclusion:</span></p>
+    <ul>
+        <li *ngFor="let c of getCriteria('inclusion', this.trialDetails.eligibility)">{{c}}</li>
+    </ul>
+    <p><span class="index">Exclusion:</span></p>
+    <ul>
+        <li *ngFor="let c of getCriteria('exclusion', this.trialDetails.eligibility)">{{c}}</li>
+    </ul>
+</div>
+<div class="spacer"></div>
+<div>
+    <p class="header">Trial Sites</p>
+    <app-search-sites-table *ngIf="this.trialDetails.locatedAt.length > 0" [sitesList]="this.trialDetails.locatedAt">
+    </app-search-sites-table>
+    <p *ngIf="this.trialDetails.locatedAt.length === 0">No sites found for this {{ this.trialDetails.protocol_type}}.
+    </p>
+</div>
+<div class="spacer"></div>
+<div>
+    <p class="header">Additional Information</p>
+    <app-registry-table [references]="this.trialDetails.references"></app-registry-table>
+</div>
+<div>
+    <p class="header">Comment Section</p>
+    <div fxLayout="row" fxLayoutAlign="center center">
+
+
+        <carousel [width]="700" cellWidth="100%" class="bigContainer" >
+            <div *ngFor="let item of comments" fxLayout="column" fxLayoutAlign="flex-end center"
+                class="carousel-cell commentCard">
+                <div style="width: 80%;" fxLayout="row" fxLayoutAlign="space-around center">
+                    <img class="personImg" src="assets/person.png">
+                <div fxLayout="column" class="comment" fxLayoutAlign="center flex-start">
+                    <div style="font-weight:700" class="commentContent">{{item.node.fullName}}:</div>
+                    <div class="commentContent">{{item.node.content}}</div>
+                    
+                </div>
+                </div>
+                <div style="width: 100%;" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutAlign="flex-end flex-end" style="height:100%">liked by {{item.node.number.low ?item.node.number.low : '-' }} people</div>
+                    <div><button *ngIf="hcpId" class=" addButton myt-button search" mat-button (click)="addComment()"
+                    >Add</button>
+                     <button *ngIf="hcpId" class="deleteButton myt-button search" mat-button (click)="deleteComment(item)"
+                    >delete</button>
+                    <button *ngIf="hcpId" class="likeButton myt-button search" mat-button (click)="likeComment(item)"
+                    >{{isLiked(item)? 'Like' : 'Unlike'}}</button></div>
+                   
+                    
+                </div>
+            </div>
+            
+
+        </carousel>
     </div>
-    <div class="spacer"></div>
-    <div>
-        <p class="header">Trial Sites</p>
-        <app-search-sites-table *ngIf="this.trialDetails.locatedAt.length > 0" [sitesList]="this.trialDetails.locatedAt"></app-search-sites-table>
-        <p *ngIf="this.trialDetails.locatedAt.length === 0">No sites found for this {{ this.trialDetails.protocol_type}}.</p>
-    </div>
-    <div class="spacer"></div>
-    <div>
-        <p class="header">Additional Information</p>
-        <app-registry-table [references]="this.trialDetails.references"></app-registry-table>
-    </div>
+</div>
 </div>

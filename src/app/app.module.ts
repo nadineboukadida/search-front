@@ -55,6 +55,9 @@ import { RegistryTableComponent } from './search-main-table/search-details/regis
 import { FreetextSearchBoxComponent } from './search-lp/freetext-search-box/freetext-search-box.component';
 import { PickUserTypeComponent } from './questionnaire/pick-user-type/pick-user-type.component';
 import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component';
+import { MatCarouselModule } from 'ng-mat-carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { AddModalComponent } from './search-main-table/search-details/add-modal/add-modal.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +89,7 @@ import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component'
     FreetextSearchBoxComponent,
     PickUserTypeComponent,
     PoemRulesComponent,
+    AddModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +102,7 @@ import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component'
       { path: 'criteria/:criteriumId', component: CriteriumDetailsComponent },
       { path: 'create/:parentId', component: CriteriumCreateComponent },
       { path: 'search', component: SearchMainTableComponent },
+      { path: 'search/:trialId/:token', component: SearchDetailsComponent },
       { path: 'search/:trialId', component: SearchDetailsComponent },
       { path: 'rules', component: PoemRulesComponent }
     ]),
@@ -122,7 +127,8 @@ import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component'
     MatIconModule,
     MatButtonToggleModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

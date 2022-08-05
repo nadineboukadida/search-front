@@ -108,7 +108,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "amplify-app:build"
+            "browserTarget": "amplify-app:build",
+            "proxyConfig": "src/proxy.conf.json"
           }
         },
         "test": {

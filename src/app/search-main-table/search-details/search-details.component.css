@@ -19,7 +19,7 @@
   font-family: "GTWalsheim";
   color: #00A56A;
   font-size: large;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 }
 
 .title {
@@ -71,3 +71,53 @@ a {
 .content {
     padding: 16px;
 }
+
+.bigContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.commentCard {
+  width: 500px;
+  height: 300px;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}  .commentContent {
+  font: 100 1rem GT-Walsheim-Bold;
+    letter-spacing: normal;
+    color: black;
+    padding: 5px;
+    justify-content: space-around;
+  }
+  mat-carousel-slide{
+    width: 300px;
+    height: 300px;
+  }
+  .personImg {
+    width: 80px !important;
+  }
+  .comment {
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .likeButton {
+    background-color: #00A56A;
+    color: white;
+    margin: 5px;
+  }
+  .addButton {
+    background-color: #484349;
+    color: white;
+    margin: 5px;
+
+  }
+  .deleteButton {
+    background-color: rgb(155, 7, 7);
+    color: white;
+    margin: 5px;
+
+
+  }
