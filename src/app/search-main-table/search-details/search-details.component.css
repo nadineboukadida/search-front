@@ -19,7 +19,6 @@
   font-family: "GTWalsheim";
   color: #00A56A;
   font-size: large;
-  margin-bottom: 5px;
 }
 
 .title {
@@ -35,14 +34,14 @@
 }
 
 .report {
-    margin-left: -14px;
-    margin-right: -14px;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    background-color: darkred;
-    color: white;
+  margin-left: -14px;
+  margin-right: -14px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: darkred;
+  color: white;
 }
 
 
@@ -58,9 +57,9 @@
 }
 
 a {
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: medium;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: medium;
 }
 
 .incorrect {
@@ -69,55 +68,126 @@ a {
 }
 
 .content {
-    padding: 16px;
+  padding: 16px;
 }
 
-.bigContainer {
-  width: 100%;
-  height: 100%;
+
+.personImg {
+  width: 45px !important;
+  height: 70px;
+  object-fit: cover;
 }
 
-.commentCard {
-  width: 500px;
-  height: 300px;
-  background-color: #eeeeee;
+.replyImg {
+  width: 25px !important;
+  height: 50px;
+  object-fit: cover;
+}
+
+.comment {
+  background-color: rgba(233, 233, 233, 0.623);
   border-radius: 10px;
-  padding: 10px 20px;
-  box-sizing: border-box;
-}  .commentContent {
-  font: 100 1rem GT-Walsheim-Bold;
-    letter-spacing: normal;
-    color: black;
-    padding: 5px;
-    justify-content: space-around;
-  }
-  mat-carousel-slide{
-    width: 300px;
-    height: 300px;
-  }
-  .personImg {
-    width: 80px !important;
-  }
-  .comment {
-    background-color: white;
-    border-radius: 10px;
-    padding: 5px;
-  }
-  .likeButton {
-    background-color: #00A56A;
-    color: white;
-    margin: 5px;
-  }
-  .addButton {
-    background-color: #484349;
-    color: white;
-    margin: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  width: fit-content;
+}
 
-  }
-  .deleteButton {
-    background-color: rgb(155, 7, 7);
-    color: white;
-    margin: 5px;
+.reply {
+  border-radius: 10px;
+  padding-top: 15px;
+}
+
+.addButton {
+  background-color: #484349;
+  color: white;
+  margin: 5px;
+
+}
+
+.deleteButton {
+  background-color: rgb(155, 7, 7);
+  color: white;
+  margin: 5px;
 
 
-  }
+}
+
+.horizontalContainer {}
+
+.verticalContainer {
+  flex-direction: column;
+}
+
+.flex {
+  display: flex;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: bolder;
+  margin: 0 5px 0 0;
+
+}
+
+.time {
+  color: #7c7c7c;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.commentContent {
+  font-size: 15px;
+  font-weight: 500;
+  max-width: 600px;
+  padding: 5px 0;
+  background-color: transparent;
+  border: 0px;
+  outline: none;
+}
+
+.replies {
+  color: #00A56A;
+  font-weight: bolder;
+  font-size: 15px;
+
+}
+
+.repliesContainer {
+  margin-left: 100px;
+}
+
+.likeButton {
+  width: 20px;
+  height: 20px;
+}
+
+.top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon,
+.iconHeart {
+  width: 14px;
+  height: 14px;
+  margin: 0 5px;
+  opacity: 0.6;
+  transition: 0.5s all;
+}
+
+.iconHeart {
+  opacity: 1;
+}
+
+.icon:hover {
+  opacity: 1;
+}
+
+.myt-button {
+  font-family: "GTWalsheim";
+  border-radius: 10;
+  background-color: rgba(233, 233, 233, 0.623);
+  color: #00A56A;
+  font-size: medium;
+}

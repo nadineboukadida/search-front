@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Add a comment</h1>
+<div fxLayout="column" fxLayoutAlign="flex-start center">
+<div  mat-dialog-content>
+  <mat-form-field appearance="fill" style="min-width:400px ;">
+    <textarea style="min-height: 200px ;" type="text" matInput [(ngModel)]="comment"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="comment" cdkFocusInitial>Ok</button>
+</div></div>

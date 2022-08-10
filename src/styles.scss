@@ -1,6 +1,5 @@
 @import '~@angular/material/theming';
 @include mat-core();
-
 $my-app-primary: mat-palette((
     50 : #00A56A,
     100 : #00A56A,
@@ -125,4 +124,11 @@ mat-option {
 mat-form-field {
     font-family: "GTWalsheim-Light" !important;
     margin-right: 1em !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.mat-snack-bar-container {
+    background-color: #00A56A !important;
+    color: white !important;
 }

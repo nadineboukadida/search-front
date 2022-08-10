@@ -25,7 +25,7 @@
 }
 
 .primary {
-    background-color: #00A56A;
+    background-color: #00A56A !important;
     color: white;
     cursor: pointer;
 }

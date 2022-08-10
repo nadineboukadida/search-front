@@ -57,8 +57,9 @@ import { PickUserTypeComponent } from './questionnaire/pick-user-type/pick-user-
 import { PoemRulesComponent } from './search-lp/poem-rules/poem-rules.component';
 import { MatCarouselModule } from 'ng-mat-carousel';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { AddModalComponent } from './search-main-table/search-details/add-modal/add-modal.component';
-
+import {MatListModule} from '@angular/material/list';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentComponent } from './search-main-table/search-details/comment/comment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,7 @@ import { AddModalComponent } from './search-main-table/search-details/add-modal/
     FreetextSearchBoxComponent,
     PickUserTypeComponent,
     PoemRulesComponent,
-    AddModalComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
@@ -128,7 +129,10 @@ import { AddModalComponent } from './search-main-table/search-details/add-modal/
     MatButtonToggleModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    MatDividerModule,
+    MatListModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -343,7 +343,7 @@ export class SearchService {
     });
   }
   editComment(commentId: string, newContent: string, url: string, token: string) {
-    return this.httpClient.patch(`${url}/like_comment`, {
+    return this.httpClient.patch(`${url}/update_comment`, {
       commentId,
       hcpToken:token,
       newContent,
@@ -359,7 +359,7 @@ export class SearchService {
     });
   }
   getHcpId(token:string){
-    return this.httpClient.post(`https://microservice-develop.mytomorrows.com/v1.1.0/api/get_user`, {token
+    return this.httpClient.post(`https://microservice.mytomorrows.com/beta-v1.2.0/api/get_user`, {token
   })}
   getLikedComments(hcpId: string,url:string){
     return this.httpClient.post(`${url}/liked_comments`, {
@@ -370,6 +370,17 @@ export class SearchService {
     return this.httpClient.patch(`${url}/like_comment`, {
       commentId,
       
+    });
+  }
+
+  getReplies(url:string,commentId:string){
+    return this.httpClient.post(`${url}/get_reply`, {
+      commentId,
+    });
+  }
+  addReply(url:string,studyId:string,hcpId:string,content:string,commentId:string,hcpToken:string){
+    return this.httpClient.post(`${url}/add_reply`, {
+      studyId,hcpId,content,commentId,hcpToken
     });
   }
 }
