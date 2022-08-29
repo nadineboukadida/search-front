@@ -191,3 +191,15 @@ a {
   color: #00A56A;
   font-size: medium;
 }
+.suggestionsContainer {
+  margin: 10px 20px;
+  background-color: rgba(233, 233, 233, 0.623);
+  width: 400px;
+  border-radius: 10px;
+  height: 700px;
+  margin-right: 10%;
+
+}
+.headerContainer {
+  max-width:720px;
+}

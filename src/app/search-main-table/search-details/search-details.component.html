@@ -55,79 +55,108 @@
     <p class="header">Additional Information</p>
     <app-registry-table [references]="this.trialDetails.references"></app-registry-table>
 </div>
-<div style="max-width:720px;">
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-        <p class="header">Comment Section</p>
-        <button mat-button class="myt-button" (click)="configureComment()">add Comment</button>
-    </div>
-
-    <div *ngFor="let item of comments; let i = index" class="comment" fxLayout="column"
-        fxLayoutAlign="flex-start flex-start">
-        <div style="min-width: 700px;max-width: 700px; position:relative" fxLayout="row"
-            fxLayoutAlign="flex-start flex-start">
-            <img class="personImg" src="assets/person.png">
-            <div fxLayout="column" style="margin-left: 20px; min-height:65px" fxLayoutAlign="space-between flex-start">
-
-                <div fxLayout="row" fxLayoutAlign="flex-start flex-end">
-                    <div class="name">{{item.node?.fullName}}</div>
-                    <div class="time">2 hours ago</div>
-                </div>
-
-                <div class="commentContent">{{item.node?.content}}</div>
-                <div fxLayout="row" fxLayoutAlign="flex-start center">
-                <div *ngIf="item.node?.replyNumber?.low > 0" class="replies cursor-pointer" (click)="toggleReplies(item.node?.id,i)">
-                    {{currentShowingIndex != i ? 'View replies ↓':'Hide replies ↑' }}
-               
-                
-            </div>
-            <div *ngIf="item.node?.replyNumber?.low == 0" class="replies">no replies</div>
-            <div *ngIf="currentShowingIndex == i || item.node?.replyNumber?.low == 0"> <img class="cursor-pointer icon" (click)="addReply(item.node?.id,i)" src="assets/comment.png"
-                        alt=""></div></div></div>
-            <div (click)="likeComment(item,i)" style="position: absolute;bottom:0;right:0">
-                {{item.node?.likeNumber?.low}}
-                <img *ngIf="liked_comments_ids.indexOf(item.node?.id) == -1" class="iconHeart cursor-pointer"
-                    src="assets/heart.png">
-                <img *ngIf="liked_comments_ids.indexOf(item.node?.id) != -1" class="iconHeart cursor-pointer"
-                    src="assets/fill-heart.png">
-            </div>
-            <div *ngIf="my_comments_list.indexOf(item.node) != -1" fxLayout="row" fxLayoutAlign="flex-start center"
-                class="top-right">
-                <div (click)="configureComment(item,i)" class=" cursor-pointer">
-                    <img class="icon" src="assets/edit.svg" alt="">
-                </div>
-                <div (click)="deleteComment(item,i)" class=" cursor-pointer">
-                    <img class="icon" src="assets/trash.svg" alt="">
-                </div>
-            </div>
-
-
-
+    
+        <div fxLayout="row"  fxLayoutAlign="space-between center" class="headerContainer">
+            <p class="header">Comment Section</p>
+            <button *ngIf="hcpId" mat-button class="myt-button" (click)="configureComment()">add Comment</button>
         </div>
-        <div *ngIf="currentShowingIndex == i" class="repliesContainer" fxLayout="column"
-            fxLayoutAlign="flex-start center">
 
-            <div *ngFor="let reply of currentReplies[i]; let ind = index" class="reply"
-                style="min-width: 500px;position: relative;" fxLayout="row" fxLayoutAlign="flex-start flex-start">
-                <img class="replyImg" src="assets/person.png">
-                <div fxLayout="column" style="margin-left: 20px" fxLayoutAlign="space-between flex-start">
+        <div fxLayout="row" fxLayoutAlign="space-between flex-start">
+
+<div style="max-width:720px;">
+        <div *ngFor="let item of comments; let i = index" class="comment" fxLayout="column"
+            fxLayoutAlign="flex-start flex-start">
+            <div style="min-width: 700px;max-width: 700px; position:relative" fxLayout="row"
+                fxLayoutAlign="flex-start flex-start">
+                <img class="personImg" src="assets/person.png">
+                <div fxLayout="column" style="margin-left: 20px; min-height:65px"
+                    fxLayoutAlign="space-between flex-start">
 
                     <div fxLayout="row" fxLayoutAlign="flex-start flex-end">
-                        <div class="name">{{reply.node.fullName}}</div>
-
-                    </div>
-                    <div class="commentContent">{{reply.node.content}}</div>
-                    <div fxLayout="row" fxLayoutAlign="flex-start center">
+                        <div class="name">{{item.node?.fullName}}</div>
                         <div class="time">2 hours ago</div>
-                       
+                    </div>
+
+                    <div class="commentContent">{{item.node?.content}}</div>
+                    <div fxLayout="row" fxLayoutAlign="flex-start center">
+                        <div *ngIf="item.node?.replyNumber?.low > 0" class="replies cursor-pointer"
+                            (click)="toggleReplies(item.node?.id,i)">
+                            {{currentShowingIndex != i ? 'View replies ↓':'Hide replies ↑' }}
+
+
+                        </div>
+                        <div *ngIf="item.node?.replyNumber?.low == 0" class="replies">no replies</div>
+                        <div *ngIf="currentShowingIndex == i || item.node?.replyNumber?.low == 0"> <img *ngIf="hcpId"
+                                class="cursor-pointer icon" (click)="addReply(item.node?.id,i)" src="assets/comment.png"
+                                alt=""></div>
+                    </div>
+                </div>
+                <div (click)="likeComment(item,i)" style="position: absolute;bottom:0;right:0">
+                    {{item.node?.likeNumber?.low}}
+                    <img *ngIf="liked_comments_ids.indexOf(item.node?.id) == -1" class="iconHeart cursor-pointer"
+                        src="assets/heart.png">
+                    <img *ngIf="liked_comments_ids.indexOf(item.node?.id) != -1" class="iconHeart cursor-pointer"
+                        src="assets/fill-heart.png">
+                </div>
+                <div *ngIf="my_comments_list.indexOf(item.node) != -1" fxLayout="row" fxLayoutAlign="flex-start center"
+                    class="top-right">
+                    <div (click)="configureComment(item,i)" class=" cursor-pointer">
+                        <img class="icon" src="assets/edit.svg" alt="">
+                    </div>
+                    <div (click)="deleteComment(item,i)" class=" cursor-pointer">
+                        <img class="icon" src="assets/trash.svg" alt="">
                     </div>
                 </div>
 
 
 
             </div>
-           
-        </div>
-    </div>
+            <div *ngIf="currentShowingIndex == i" class="repliesContainer" fxLayout="column"
+                fxLayoutAlign="flex-start center">
 
+                <div *ngFor="let reply of currentReplies[i]; let ind = index" class="reply"
+                    style="min-width: 500px;position: relative;" fxLayout="row" fxLayoutAlign="flex-start flex-start">
+                    <img class="replyImg" src="assets/person.png">
+                    <div fxLayout="column" style="margin-left: 20px" fxLayoutAlign="space-between flex-start">
+
+                        <div fxLayout="row" fxLayoutAlign="flex-start flex-end">
+                            <div class="name">{{reply.node.fullName}}</div>
+
+                        </div>
+                        <div class="commentContent">{{reply.node.content}}</div>
+                        <div fxLayout="row" fxLayoutAlign="flex-start center">
+                            <div class="time">2 hours ago</div>
+
+                        </div>
+                     
+                        <div *ngIf="my_comments_list.indexOf(reply.node) != -1" fxLayout="row"
+                            fxLayoutAlign="flex-start center" class="top-right">
+                            <div (click)="likeComment(reply,i,ind)">
+                                {{reply.node?.likeNumber?.low}}
+                                <img *ngIf="liked_comments_ids.indexOf(reply.node?.id) == -1"
+                                    class="iconHeart cursor-pointer" src="assets/heart.png">
+                                <img *ngIf="liked_comments_ids.indexOf(reply.node?.id) != -1"
+                                    class="iconHeart cursor-pointer" src="assets/fill-heart.png">
+                            </div>
+                            <div (click)="configureComment(reply,i,ind,true)" class=" cursor-pointer">
+                                <img class="icon" src="assets/edit.svg" alt="">
+                            </div>
+                            <div (click)="deleteComment(reply,i,true)" class=" cursor-pointer">
+                                <img class="icon" src="assets/trash.svg" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div fxHide.lt-md fxShow class="suggestionsContainer">
+
+    </div>
 </div>
 </div>

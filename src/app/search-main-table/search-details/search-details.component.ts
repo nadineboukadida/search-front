@@ -127,12 +127,12 @@ export class SearchDetailsComponent implements OnInit {
   }
 
   likeComment(item: any, index: any, replyIndex?:any) {
+    if(this.hcpId){
     this.searchService
       .likeComment(item.node.id, this.url, this.token)
       .subscribe(() => {
         if (this.liked_comments_ids.indexOf(item.node.id) != -1) {
-          if (replyIndex) {
-            debugger
+          if (replyIndex || replyIndex==0) {
             this.currentReplies[index][replyIndex].node.likeNumber.low =
             this.currentReplies[index][replyIndex].node.likeNumber.low - 1;
           } else {
@@ -146,7 +146,7 @@ export class SearchDetailsComponent implements OnInit {
           });
           this.openSnackBar("comment disliked!");
         } else {
-          if(replyIndex) {
+          if(replyIndex || replyIndex==0) {
        this.currentReplies[index][replyIndex].node.likeNumber.low =
            this.currentReplies[index][replyIndex].node.likeNumber.low + 1;
 
@@ -160,21 +160,28 @@ export class SearchDetailsComponent implements OnInit {
           this.openSnackBar("comment liked!");
         }
       });
-  }
+  }}
 
-  deleteComment(item: any, index: any) {
+  deleteComment(item: any, index: any,reply?:boolean) {
     this.searchService
       .deleteComment(item.node.id, this.token, this.url)
       .subscribe(() => {
-        debugger
-        this.comments = this.comments.filter(function (element) {
+        if(reply) {
+          this.currentReplies[index] = this.currentReplies[index].filter(function (element:any) {
+            return element != item;
+          });
+        }
+        else {
+              this.comments = this.comments.filter(function (element) {
           return element != item.node.id;
         });
+        }
+    
         this.openSnackBar("comment deleted!");
       });
   }
 
-  configureComment(item?: any, index?: any) {
+  configureComment(item?: any, index?: any,replyIndex?:any,reply?:boolean) {
     const dialogRef = this.dialog.open(CommentComponent, {
       width: "500px",
     });
@@ -184,8 +191,14 @@ export class SearchDetailsComponent implements OnInit {
         this.searchService
           .editComment(item.node.id, response, this.url, this.token)
           .subscribe(() => {
-            this.comments[index].node.content = response;
+            if(reply) {
+              this.currentReplies[index][replyIndex].node.content=response;
+            }
+            else {
+                          this.comments[index].node.content = response;
             this.openSnackBar("your comment has been updated!");
+            }
+
           });
       });
     } else {
@@ -224,6 +237,7 @@ export class SearchDetailsComponent implements OnInit {
         .subscribe((response1: any) => {
           this.currentReplies[index]=   this.currentReplies[index]? this.currentReplies[index] : []
           this.currentReplies[index].push({node: response1.data.result});
+          this.my_comments_list.push(response1.data.result);
           this.comments[index].node.replyNumber.low= this.comments[index].node?.replyNumber?.low +1 ;
           this.openSnackBar("your reply has been added!");
         });
@@ -237,6 +251,11 @@ export class SearchDetailsComponent implements OnInit {
           if (response && response.data && response.data.result ) {
             this.currentReplies[index] = response.data.result;
             this.currentShowingIndex = index;
+            debugger
+            response.data.result.forEach((item:any) => {
+              if (item.node.hcpId == this.hcpId)
+                this.my_comments_list.push(item.node);
+            });
           }
         });
     } else if (this.currentShowingIndex != -1) {
